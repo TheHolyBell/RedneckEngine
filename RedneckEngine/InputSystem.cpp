@@ -12,9 +12,6 @@ std::function<void()> InputSystem::m_Hotkeys[256];
 void InputSystem::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	ProcessMessage(msg, wParam, lParam);
-
-	//if (ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam) && Menu::Get().IsVisible())
-	//	return 1;
 }
 
 bool InputSystem::ProcessMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)

@@ -4,6 +4,7 @@
 #include "WindowClass.h"
 #include "InputSystem.h"
 #include "CommandLineProcessor.h"
+#include "OpenFileDialog.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR CommandLine, int)
 {
@@ -14,6 +15,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR CommandLine, int)
 
 	Console::WriteLine("Dick");
 	Console::WriteLine("Pussy juice");
+
+	//OpenFileDialog::ShowDialogAsync([](const std::string& path) {MessageBoxA(nullptr, path.c_str(), "Test", MB_OK); });
+
 	Console::ReadKey();
 
 	Window* window = Window::CreateInstance(800, 600, "Test");

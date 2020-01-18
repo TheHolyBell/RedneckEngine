@@ -34,6 +34,31 @@ bool Console::WriteLine(const char* fmt, ...)
 	return !!WriteConsoleA(_out, _buffie.c_str(), static_cast<DWORD>(_buffie.length()), nullptr, nullptr);
 }
 
+bool Console::Write(const char* fmt, ...)
+{
+	if (_out == nullptr)
+		return false;
+
+	char buf[1024];
+	va_list va;
+
+	va_start(va, fmt);
+	_vsnprintf_s(buf, 1024, fmt, va);
+	va_end(va);
+
+	return !!WriteConsoleA(_out, buf, static_cast<DWORD>(strlen(buf)), nullptr, nullptr);
+}
+
+bool Console::WriteLine(const std::string& fmt)
+{
+	return WriteLine(fmt.c_str());
+}
+
+bool Console::Write(const std::string& fmt)
+{
+	return Write(fmt.c_str());
+}
+
 
 unsigned char Console::ReadKey()
 {
@@ -44,7 +69,9 @@ unsigned char Console::ReadKey()
 	auto keysread = DWORD{ 0 };
 
 	ReadConsoleA(_in, &key, 1, &keysread, nullptr);
+	return key;
 }
+
 
 void Console::Shutdown()
 {

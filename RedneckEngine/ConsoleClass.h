@@ -1,5 +1,6 @@
 #pragma once
 #include <Windows.h>
+#include <string>
 
 class Console
 {
@@ -7,6 +8,11 @@ public:
 	static void Initialize();
 
 	static bool WriteLine(const char* fmt, ...);
+	static bool Write(const char* fmt, ...);
+	
+	static bool WriteLine(const std::string& fmt);
+	static bool Write(const std::string&  fmt);
+
 	static unsigned char ReadKey();
 
 	static void Shutdown();

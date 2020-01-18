@@ -16,9 +16,6 @@
     <Filter Include="InputSystem">
       <UniqueIdentifier>{3dc086a4-9e26-4f19-ab5b-047c24490e6c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="RenderSystem">
-      <UniqueIdentifier>{afe1cc01-a4ee-4fa1-8c5d-4acf4d3abb5c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="LogSystem">
       <UniqueIdentifier>{5d5b9ee0-fd26-4634-8c96-6fac5da1347a}</UniqueIdentifier>
     </Filter>
@@ -43,6 +40,15 @@
     <Filter Include="Header Files\Drawable">
       <UniqueIdentifier>{0d01650d-a136-45f5-83bb-ebf3fa268499}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{5748b971-a6a7-48a1-afcb-661def9c6b2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utility">
+      <UniqueIdentifier>{bfa07932-e185-4e1f-b7cf-0ad466741557}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderingSystem">
+      <UniqueIdentifier>{afe1cc01-a4ee-4fa1-8c5d-4acf4d3abb5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,7 +58,7 @@
       <Filter>InputSystem</Filter>
     </ClCompile>
     <ClCompile Include="WindowClass.cpp">
-      <Filter>RenderSystem</Filter>
+      <Filter>RenderingSystem</Filter>
     </ClCompile>
     <ClCompile Include="ConsoleClass.cpp">
       <Filter>LogSystem</Filter>
@@ -84,8 +90,11 @@
     <ClCompile Include="CommandLineProcessor.cpp">
       <Filter>Preprocessing</Filter>
     </ClCompile>
+    <ClCompile Include="OpenFileDialog.cpp">
+      <Filter>Header Files\Utility</Filter>
+    </ClCompile>
     <ClCompile Include="Timer.cpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -93,7 +102,7 @@
       <Filter>InputSystem</Filter>
     </ClInclude>
     <ClInclude Include="WindowClass.h">
-      <Filter>RenderSystem</Filter>
+      <Filter>RenderingSystem</Filter>
     </ClInclude>
     <ClInclude Include="ConsoleClass.h">
       <Filter>LogSystem</Filter>
@@ -108,13 +117,13 @@
       <Filter>LogSystem</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
-      <Filter>RenderSystem</Filter>
+      <Filter>RenderingSystem</Filter>
     </ClInclude>
     <ClInclude Include="EventHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Graphics.h">
-      <Filter>RenderSystem</Filter>
+      <Filter>RenderingSystem</Filter>
     </ClInclude>
     <ClInclude Include="IDrawable.h">
       <Filter>Interfaces</Filter>
@@ -158,8 +167,11 @@
     <ClInclude Include="ImGui\imstb_truetype.h">
       <Filter>ThirdParty\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="OpenFileDialog.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
