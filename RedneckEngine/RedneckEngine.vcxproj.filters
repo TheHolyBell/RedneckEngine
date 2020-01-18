@@ -16,10 +16,150 @@
     <Filter Include="InputSystem">
       <UniqueIdentifier>{3dc086a4-9e26-4f19-ab5b-047c24490e6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RenderSystem">
+      <UniqueIdentifier>{afe1cc01-a4ee-4fa1-8c5d-4acf4d3abb5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LogSystem">
+      <UniqueIdentifier>{5d5b9ee0-fd26-4634-8c96-6fac5da1347a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{2fa449e1-5d34-4f65-b9ca-4d3a9450dab6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Preprocessing">
+      <UniqueIdentifier>{0648bc78-2ab3-4671-a733-cabe77399fb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{4e56f78e-8bc8-46eb-b22c-53fc559a9ce6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\ImGui">
+      <UniqueIdentifier>{035b90bc-960f-4e69-9517-1171cda5458f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\DynamicStructures">
+      <UniqueIdentifier>{06fb46ed-cf77-4124-8f5d-1afb93043291}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Bindable">
+      <UniqueIdentifier>{9dba3fad-e744-4d23-ba1d-a61751df4692}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Drawable">
+      <UniqueIdentifier>{0d01650d-a136-45f5-83bb-ebf3fa268499}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InputSystem.cpp">
+      <Filter>InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowClass.cpp">
+      <Filter>RenderSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleClass.cpp">
+      <Filter>LogSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowErrorClass.cpp">
+      <Filter>LogSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>ThirdParty\DynamicStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui.cpp">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_demo.cpp">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_draw.cpp">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_dx11.cpp">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_win32.cpp">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_widgets.cpp">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandLineProcessor.cpp">
+      <Filter>Preprocessing</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="InputSystem.h">
+      <Filter>InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowClass.h">
+      <Filter>RenderSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleClass.h">
+      <Filter>LogSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="LogCommon.h">
+      <Filter>LogSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowErrorClass.h">
+      <Filter>LogSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="RedneckException.h">
+      <Filter>LogSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>RenderSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>RenderSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="IDrawable.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IUpdateable.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IMenuViewable.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandLineProcessor.h">
+      <Filter>Preprocessing</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>ThirdParty\DynamicStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>ThirdParty\DynamicStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imconfig.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_dx11.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_win32.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_internal.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_rectpack.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_textedit.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_truetype.h">
+      <Filter>ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
