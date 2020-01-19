@@ -16,6 +16,11 @@ void Console::Initialize()
 	AttachConsole();
 }
 
+void Console::Shutdown()
+{
+	DetachConsole();
+}
+
 bool Console::WriteLine(const char* fmt, ...)
 {
 	if (_out == nullptr)
@@ -28,10 +33,15 @@ bool Console::WriteLine(const char* fmt, ...)
 	_vsnprintf_s(buf, 1024, fmt, va);
 	va_end(va);
 
-	std::string _buffie(buf);
-	_buffie += "\n";
+	/*std::string _buffie(buf);
+	_buffie += "\n";*/
+	
 
-	return !!WriteConsoleA(_out, _buffie.c_str(), static_cast<DWORD>(_buffie.length()), nullptr, nullptr);
+	int _last_elem = strlen(buf);
+	buf[_last_elem] = '\n';
+	buf[_last_elem+1] = '\0';
+
+	return WriteConsoleA(_out, buf, static_cast<DWORD>(_last_elem + 1), nullptr, nullptr);
 }
 
 bool Console::Write(const char* fmt, ...)
@@ -46,7 +56,7 @@ bool Console::Write(const char* fmt, ...)
 	_vsnprintf_s(buf, 1024, fmt, va);
 	va_end(va);
 
-	return !!WriteConsoleA(_out, buf, static_cast<DWORD>(strlen(buf)), nullptr, nullptr);
+	return WriteConsoleA(_out, buf, static_cast<DWORD>(strlen(buf)), nullptr, nullptr);
 }
 
 bool Console::WriteLine(const std::string& fmt)
@@ -60,7 +70,7 @@ bool Console::Write(const std::string& fmt)
 }
 
 
-unsigned char Console::ReadKey()
+char Console::ReadKey()
 {
 	if (_in == nullptr)
 		return false;
@@ -72,11 +82,39 @@ unsigned char Console::ReadKey()
 	return key;
 }
 
-
-void Console::Shutdown()
+int Console::Read()
 {
-	DetachConsole();
+	return atoi(ReadLine().c_str());
 }
+
+std::string Console::ReadLine()
+{
+	std::string _result;
+	char c;
+	while (c = ReadKey(), c != '\r')
+	{
+		if (c == '\b' && _result.length() != 0)
+		{
+			Write("\b \b");
+			_result.pop_back();
+		}
+		else if (c >= 32)
+		{
+			_result += c;
+			Write("%c", c);
+		}
+	}
+	Write("%c", '\n');
+	return _result;
+}
+
+
+void Console::SetConsoleColor(ConsoleColor color)
+{
+	if (_out != nullptr)
+		SetConsoleTextAttribute(_out, (WORD)color);
+}
+
 
 void Console::AttachConsole()
 {

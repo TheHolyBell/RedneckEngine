@@ -37,14 +37,13 @@ private:
 		WindowClass(const WindowClass& rhs) = delete;
 		WindowClass& operator=(const WindowClass& rhs) = delete;
 
-		constexpr static const char* wndClassName = "Chili Direct3D Engine Window";
+		constexpr static const char* wndClassName = "Direct3D Engine Window";
 		static WindowClass wndClass;
 		HINSTANCE hInst = nullptr;
 	};
 
 public:
-	// Events
-
+	// Events for notice listeners (Pattern: Observer)
 	EventHandler<void(int, int)> OnResizeHandler;
 
 private:

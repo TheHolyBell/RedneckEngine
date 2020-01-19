@@ -5,26 +5,29 @@
 #include "InputSystem.h"
 #include "CommandLineProcessor.h"
 #include "OpenFileDialog.h"
+#include "ImGuiManager.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR CommandLine, int)
 {
 	CommandLineProcessor::Execute(CommandLine);
-
-	InputSystem::RegisterHotkey(VK_SPACE, []() {Console::WriteLine("I've been pressed"); });
 	Console::Initialize();
 
+	InputSystem::WasKeyPressed(VK_SPACE);
+	InputSystem::RegisterHotkey(VK_SPACE, []() {OpenFileDialog::ShowDialogAsync([](const std::string& path) {Console::WriteLine(path); }); });
+
+	Console::SetConsoleColor(ConsoleColor::White);
 	Console::WriteLine("Dick");
+	Console::SetConsoleColor(ConsoleColor::Blue);
 	Console::WriteLine("Pussy juice");
 
-	//OpenFileDialog::ShowDialogAsync([](const std::string& path) {MessageBoxA(nullptr, path.c_str(), "Test", MB_OK); });
-
+	Console::SetConsoleColor(ConsoleColor::Red);
+	//Console::Write(*OpenFileDialog::ShowDialog());
+	Console::WriteLine("Final number is: %d", Console::Read());
 	Console::ReadKey();
 
-	Window* window = Window::CreateInstance(800, 600, "Test");
+	ImGuiManager::Initialize();
 
-
-	window->OnResizeHandler += [](int width, int height) {Console::WriteLine("Width: %d, Height: %d", width, height); };
-	window->OnResizeHandler += [](int, int) {Console::WriteLine("Second handler"); };
+	Window* window = Window::CreateInstance(800, 600, "Redneck Engine");
 
 	MSG msg = {};
 	while (GetMessage(&msg, nullptr, 0, 0))
@@ -34,6 +37,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR CommandLine, int)
 	}
 
 	Console::Shutdown();
+
+	ImGuiManager::Shutdown();
 
 	return 0;
 }

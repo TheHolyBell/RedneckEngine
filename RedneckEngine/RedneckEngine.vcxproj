@@ -146,8 +146,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Audio.cpp" />
     <ClCompile Include="CommandLineProcessor.cpp" />
     <ClCompile Include="ConsoleClass.cpp" />
+    <ClCompile Include="dxerr.cpp" />
+    <ClCompile Include="DXGIInfoManager.cpp" />
+    <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="ImGuiManager.cpp" />
     <ClCompile Include="ImGui\imgui.cpp" />
     <ClCompile Include="ImGui\imgui_demo.cpp" />
     <ClCompile Include="ImGui\imgui_draw.cpp" />
@@ -157,19 +162,26 @@
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OpenFileDialog.cpp" />
+    <ClCompile Include="RedneckException.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="WindowClass.cpp" />
     <ClCompile Include="WindowErrorClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="Audio.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="CommandLineProcessor.h" />
     <ClInclude Include="ConsoleClass.h" />
+    <ClInclude Include="dxerr.h" />
+    <ClInclude Include="DXGIInfoManager.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="GraphicsThrowMacros.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IMenuViewable.h" />
+    <ClInclude Include="ImGuiManager.h" />
     <ClInclude Include="ImGui\imconfig.h" />
     <ClInclude Include="ImGui\imgui.h" />
     <ClInclude Include="ImGui\imgui_impl_dx11.h" />
@@ -180,14 +192,21 @@
     <ClInclude Include="ImGui\imstb_truetype.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="IUpdateable.h" />
+    <ClInclude Include="json.hpp" />
     <ClInclude Include="LogCommon.h" />
     <ClInclude Include="OpenFileDialog.h" />
+    <ClInclude Include="ExceptionMacro.h" />
     <ClInclude Include="RedneckException.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="WindowClass.h" />
     <ClInclude Include="WindowErrorClass.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DXGetErrorDescription.inl" />
+    <None Include="DXGetErrorString.inl" />
+    <None Include="DXTrace.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

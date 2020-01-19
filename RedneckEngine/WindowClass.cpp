@@ -1,6 +1,6 @@
 #include "WindowClass.h"
 #include "LogCommon.h"
-#include "RedneckException.h"
+#include "ExceptionMacro.h"
 #include "InputSystem.h"
 #include "ImGui\imgui_impl_win32.h"
 

@@ -1,7 +1,5 @@
 #include "InputSystem.h"
 
-//LRESULT ImGui_ImplWin32_WndProcHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
-
 // @ Allocating memory for declared in static class members
 
 KeyState InputSystem::m_iKeyMap[256] = {};

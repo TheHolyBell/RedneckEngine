@@ -49,6 +49,51 @@
     <Filter Include="RenderingSystem">
       <UniqueIdentifier>{afe1cc01-a4ee-4fa1-8c5d-4acf4d3abb5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{9307dd36-0d92-4234-803f-c0147cfb681d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\VS">
+      <UniqueIdentifier>{7a5bc4e5-9782-49c5-90a4-d458e872eee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\PS">
+      <UniqueIdentifier>{a2cbdbbd-8472-4f75-9695-e3662c491159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\GS">
+      <UniqueIdentifier>{bc0b61df-70e6-459d-9082-19b4522b98b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\CS">
+      <UniqueIdentifier>{0eca322b-2304-47d6-8a35-72bd8d8fdaf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\DS">
+      <UniqueIdentifier>{776ec20b-8f13-4fed-82be-3b489a3e421c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\HS">
+      <UniqueIdentifier>{ad53aa64-04c5-4ff9-a85c-93f0a32b80cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\JSON">
+      <UniqueIdentifier>{7c22d022-47c0-410a-b389-5f104f358d88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SoundSystem">
+      <UniqueIdentifier>{eed689ac-2621-4a6c-8958-73385e5f321c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SoundSystem\Audio">
+      <UniqueIdentifier>{7a11680a-f380-4d02-a1dc-d10851270183}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PhysicsSystem">
+      <UniqueIdentifier>{714e5994-129b-4e81-afea-0055be487cdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LogSystem\Macros">
+      <UniqueIdentifier>{cd7424b9-e2f6-4167-aa93-f0a0a97db6b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LogSystem\Exceptions">
+      <UniqueIdentifier>{75e236c2-262b-4bc1-b33d-4462d4a568b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\DXerr">
+      <UniqueIdentifier>{039c9fd1-e506-4c82-882a-fa1da480f1ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{ace00d92-5d68-43a2-bf57-31989da6dadd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -96,6 +141,24 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Header Files\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>SoundSystem\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiManager.cpp">
+      <Filter>ThirdParty</Filter>
+    </ClCompile>
+    <ClCompile Include="DXGIInfoManager.cpp">
+      <Filter>LogSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="RedneckException.cpp">
+      <Filter>LogSystem\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>RenderingSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="dxerr.cpp">
+      <Filter>ThirdParty\DXerr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputSystem.h">
@@ -111,9 +174,6 @@
       <Filter>LogSystem</Filter>
     </ClInclude>
     <ClInclude Include="WindowErrorClass.h">
-      <Filter>LogSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="RedneckException.h">
       <Filter>LogSystem</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
@@ -173,5 +233,43 @@
     <ClInclude Include="Timer.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>ThirdParty\JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.h">
+      <Filter>SoundSystem\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiManager.h">
+      <Filter>ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="DXGIInfoManager.h">
+      <Filter>LogSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsThrowMacros.h">
+      <Filter>LogSystem\Macros</Filter>
+    </ClInclude>
+    <ClInclude Include="RedneckException.h">
+      <Filter>LogSystem\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="ExceptionMacro.h">
+      <Filter>LogSystem\Macros</Filter>
+    </ClInclude>
+    <ClInclude Include="dxerr.h">
+      <Filter>ThirdParty\DXerr</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DXGetErrorDescription.inl">
+      <Filter>ThirdParty\DXerr</Filter>
+    </None>
+    <None Include="DXGetErrorString.inl">
+      <Filter>ThirdParty\DXerr</Filter>
+    </None>
+    <None Include="DXTrace.inl">
+      <Filter>ThirdParty\DXerr</Filter>
+    </None>
   </ItemGroup>
 </Project>

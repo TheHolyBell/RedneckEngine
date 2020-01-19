@@ -1,15 +1,20 @@
 #pragma once
-#include "WindowErrorClass.h"
-#include "LogCommon.h"
-#include <sstream>
+#include <exception>
+#include <string>
 
-#define THROW_LAST_EXCEPT() { \
-	auto _errString = WindowErrorClass::GetLastError();   \
-	std::ostringstream oss; \
-	oss << "File: " << __FILE__ << std::endl; \
-	oss << "Line: " << __LINE__ << std::endl; \
-	oss << _errString;	\
-	_errString = oss.str(); \
-	LOG_ERROR(_errString.c_str());  \
-	throw std::exception(_errString.c_str()); \
-	}
+class RedneckException : public std::exception
+{
+public:
+	RedneckException(int line, const char* file) noexcept;
+
+	virtual const char* what() const noexcept override;
+	virtual const char* GetType() const noexcept;
+	int GetLine() const noexcept;
+	const std::string& GetFile() const noexcept;
+	std::string GetOriginString() const noexcept;
+private:
+	int line = 0;
+	std::string file = "NoName";
+protected:
+	mutable std::string whatBuffer;
+};
