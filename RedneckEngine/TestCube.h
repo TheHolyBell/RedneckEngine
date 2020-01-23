@@ -13,7 +13,6 @@ public:
 	
 	// Returns the same value
 	virtual std::string GetUID() const noexcept override;
-	virtual std::string GetName() const noexcept override;
 	
 	virtual void ItemSelected() noexcept override;
 	virtual bool IsMenuDrawable() const noexcept override;

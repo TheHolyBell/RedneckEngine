@@ -234,6 +234,7 @@
     <ClInclude Include="IndexedTriangleList.h" />
     <ClInclude Include="InputLayout.h" />
     <ClInclude Include="InputSystem.h" />
+    <ClInclude Include="IUID.h" />
     <ClInclude Include="IUpdateable.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="LogCommon.h" />

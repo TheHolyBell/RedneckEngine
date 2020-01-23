@@ -69,11 +69,6 @@ std::string TestCube::GetUID() const noexcept
 	return m_UID;
 }
 
-std::string TestCube::GetName() const noexcept
-{
-	return m_UID;
-}
-
 void TestCube::ItemSelected() noexcept
 {
 	m_bMenu = true;
@@ -86,7 +81,7 @@ bool TestCube::IsMenuDrawable() const noexcept
 
 void TestCube::DrawMenu(Graphics& gfx) noexcept
 {
-	if (ImGui::Begin("Cube", &m_bMenu))
+	if (ImGui::Begin(m_UID.c_str(), &m_bMenu))
 	{
 		ImGui::Text("Position");
 		ImGui::SliderFloat("X", &m_pos.x, -80.0f, 80.0f, "%.1f");

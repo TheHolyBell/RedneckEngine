@@ -38,11 +38,6 @@ TestPlane::TestPlane(Graphics& gfx, float size, DirectX::XMFLOAT4 color)
 	AddBind(Rasterizer::Resolve(gfx, true));
 }
 
-std::string TestPlane::GetName() const noexcept
-{
-	return GetUID();
-}
-
 bool TestPlane::IsMenuDrawable() const noexcept
 {
 	return m_bMenu;

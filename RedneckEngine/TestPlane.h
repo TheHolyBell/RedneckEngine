@@ -8,7 +8,6 @@ class TestPlane : public Entity, public IMenuViewable
 public:
 	TestPlane(Graphics& gfx, float size, DirectX::XMFLOAT4 color = { 1.0f, 1.0f, 1.0f,1.0f });
 
-	virtual std::string GetName() const noexcept override;
 	virtual bool IsMenuDrawable() const noexcept override;
 	virtual void DrawMenu(Graphics& gfx) noexcept override;
 	virtual void ItemSelected() noexcept override;

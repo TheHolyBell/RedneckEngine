@@ -39,7 +39,7 @@ void Menu::Render(Graphics& gfx)
 
 void Menu::AddItem(std::shared_ptr<IMenuViewable> item)
 {
-	std::string name = item->GetName();
+	std::string name = item->GetUID();
 	auto it = m_items.find(name);
 	if (it == m_items.end())
 		m_items[name] = std::move(item);

@@ -21,6 +21,14 @@ App::App(int width, int height, const char* title, const std::string& commandLin
 	EntityManager::AddEntity(entityCube);
 	Menu::AddItem(entityCube);
 
+	entityCube = std::make_shared<TestCube>(*m_pGfx, 15.0f);
+	EntityManager::AddEntity(entityCube);
+	Menu::AddItem(entityCube);
+
+	entityCube = std::make_shared<TestCube>(*m_pGfx, 30.0f);
+	EntityManager::AddEntity(entityCube);
+	Menu::AddItem(entityCube);
+
 	auto entityPlane = std::make_shared<TestPlane>(*m_pGfx, 100);
 	EntityManager::AddEntity(entityPlane);
 	Menu::AddItem(entityPlane);

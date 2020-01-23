@@ -13,5 +13,4 @@ public:
 	static void RemoveItem(const std::string& name);
 private:
 	static std::unordered_map<std::string, std::shared_ptr<IMenuViewable>> m_items;
-
 };
