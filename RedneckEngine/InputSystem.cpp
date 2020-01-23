@@ -4,6 +4,7 @@
 
 KeyState InputSystem::m_iKeyMap[256];
 std::function<void()> InputSystem::m_Hotkeys[256];
+int InputSystem::m_lastPressed = 0;
 
 // @ Class definition
 
@@ -34,10 +35,12 @@ bool InputSystem::ProcessKeybdMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_KEYDOWN:
 	case WM_SYSKEYDOWN:
+		m_lastPressed = wParam;
 		state = KeyState::Down;
 		break;
 	case WM_KEYUP:
 	case WM_SYSKEYUP:
+		m_lastPressed = 0;
 		state = KeyState::Up;
 		break;
 	default:
@@ -55,6 +58,7 @@ bool InputSystem::ProcessKeybdMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	}
 	else
 		m_iKeyMap[int(key)] = state;
+
 
 	return true;
 }
@@ -84,4 +88,9 @@ void InputSystem::RegisterHotkey(uint32_t vk, std::function<void()> f)
 void InputSystem::RemoveHotkey(uint32_t vk)
 {
 	m_Hotkeys[vk] = nullptr;
+}
+
+int InputSystem::GetLastPressedKey()
+{
+	return m_lastPressed;
 }

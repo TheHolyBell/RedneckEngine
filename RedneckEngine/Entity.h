@@ -15,7 +15,7 @@ public:
 	Entity(const Entity& rhs) = delete;
 
 	virtual DirectX::XMMATRIX GetTransformXM() const noexcept = 0;
-	virtual std::string GetUID() const = 0;
+	virtual std::string GetUID() const noexcept = 0;
 
 	virtual void Update(float dt) override {}
 	virtual void Draw(Graphics& gfx) const noexcept(!IS_DEBUG) override;

@@ -48,7 +48,7 @@ DirectX::XMMATRIX SolidSphere::GetTransformXM() const noexcept
 	return DirectX::XMMatrixTranslation(m_pos.x, m_pos.y, m_pos.z);
 }
 
-std::string SolidSphere::GetUID() const
+std::string SolidSphere::GetUID() const noexcept
 {
 	return m_name;
 }

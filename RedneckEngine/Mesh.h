@@ -29,14 +29,11 @@ class Mesh : public Entity
 public:
 	Mesh(Graphics& gfx, std::vector<std::shared_ptr<Bind::IBindable>> bindPtrs);
 
-	virtual void Update(float dt) override {}
-	virtual std::string GetUID() const override;
+	virtual std::string GetUID() const noexcept { return "Dick"; }
 	void Draw(Graphics& gfx, DirectX::FXMMATRIX accumulatedTransform) const noexcept(!IS_DEBUG);
 	virtual DirectX::XMMATRIX GetTransformXM() const noexcept override;
 private:
 	mutable DirectX::XMFLOAT4X4 transform;
-	std::string m_name;
-	static int Count;
 };
 
 class Node

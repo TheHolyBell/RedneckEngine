@@ -231,6 +231,15 @@
     <ClCompile Include="Application.cpp">
       <Filter>Application</Filter>
     </ClCompile>
+    <ClCompile Include="TestCube.cpp">
+      <Filter>Header Files\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformCbufDoubleBoi.cpp">
+      <Filter>Header Files\Bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="TestPlane.cpp">
+      <Filter>Header Files\Drawable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputSystem.h">
@@ -425,6 +434,15 @@
     <ClInclude Include="RedneckXM.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="TestCube.h">
+      <Filter>Header Files\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformCbufDoubleBoi.h">
+      <Filter>Header Files\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="TestPlane.h">
+      <Filter>Header Files\Drawable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXGetErrorDescription.inl">
@@ -439,12 +457,24 @@
     <None Include="Transform.hlsli">
       <Filter>Shaders\Headers</Filter>
     </None>
+    <None Include="ShaderOps.hlsli">
+      <Filter>Shaders\Headers</Filter>
+    </None>
+    <None Include="PointLight.hlsli">
+      <Filter>Shaders\Headers</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="SolidVS.hlsl">
       <Filter>Shaders\VS</Filter>
     </FxCompile>
     <FxCompile Include="SolidPS.hlsl">
+      <Filter>Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="PhongVS.hlsl">
+      <Filter>Shaders\VS</Filter>
+    </FxCompile>
+    <FxCompile Include="PhongPSNormalMap.hlsl">
       <Filter>Shaders\PS</Filter>
     </FxCompile>
   </ItemGroup>

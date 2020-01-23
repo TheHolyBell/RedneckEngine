@@ -9,7 +9,7 @@ public:
 
 	virtual DirectX::XMMATRIX GetTransformXM() const noexcept override;
 
-	virtual std::string GetUID() const;
+	virtual std::string GetUID() const noexcept;
 
 	void SetPos(DirectX::XMFLOAT3 pos) noexcept;
 private:

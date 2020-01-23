@@ -15,6 +15,7 @@ namespace Bind
 class Graphics
 {
 	friend class Bind::IBindable;
+	friend class App;
 public:
 	class Exception : public RedneckException
 	{
@@ -66,6 +67,10 @@ public:
 	void EndFrame();
 	void DrawIndexed(UINT count) noexcept(!IS_DEBUG);
 
+	void EnableImGui() noexcept;
+	void DisableImGui() noexcept;
+	bool IsImGuiEnabled() const noexcept;
+
 	DirectX::XMMATRIX GetProjection() const noexcept;
 	DirectX::XMMATRIX GetView() const noexcept;
 
@@ -86,4 +91,5 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_pDepthStencilView;
 
 	Camera m_camera;
+	bool m_bImGuiEnabled = true;
 };

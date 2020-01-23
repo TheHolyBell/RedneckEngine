@@ -15,11 +15,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR CommandLine, int)
 
 	ImGuiManager::Initialize();
 
-	App app{1280, 800, "Hello"};
+	App app{ 1280, 800, "Hello" };
 
 	app.Run();
-
+	
 	ImGuiManager::Shutdown();
+	Console::Shutdown();
 
 	return 0;
 }

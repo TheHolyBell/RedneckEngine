@@ -8,10 +8,11 @@
 #include "RedneckXM.h"
 #include "TransformCbuf.h"
 #include <typeinfo>
+#include "EntityManager.h"
 
 namespace dx = DirectX;
 
-int Mesh::Count = 0;
+#pragma comment(lib, "assimp-vc140-mt.lib")
 
 ModelException::ModelException(int line, const char* file, std::string note) noexcept
 	:
@@ -49,14 +50,8 @@ Mesh::Mesh(Graphics& gfx, std::vector<std::shared_ptr<Bind::IBindable>> bindPtrs
 	}
 
 	AddBind(std::make_shared<Bind::TransformCbuf>(gfx, *this));
+}
 
-	using namespace std::string_literals;
-	m_name = typeid(Mesh).name() + "$"s + std::to_string(Count++);
-}
-std::string Mesh::GetUID() const
-{
-	return m_name;
-}
 
 void Mesh::Draw(Graphics& gfx, DirectX::FXMMATRIX accumulatedTransform) const noexcept(!IS_DEBUG)
 {
@@ -635,6 +630,7 @@ std::unique_ptr<Mesh> Model::ParseMesh(Graphics& gfx, const aiMesh& mesh, const 
 
 	bindablePtrs.push_back(Blender::Resolve(gfx, false));
 
+	
 	return std::make_unique<Mesh>(gfx, std::move(bindablePtrs));
 }
 

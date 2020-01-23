@@ -24,6 +24,7 @@ public:
 	static void RegisterHotkey(uint32_t vk, std::function<void()> f);
 	static void RemoveHotkey(uint32_t vk);
 
+	static int GetLastPressedKey();
 private:
 	static void WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -31,6 +32,6 @@ private:
 	static bool ProcessKeybdMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 	static KeyState m_iKeyMap[256];
-
+	static int m_lastPressed;
 	static std::function<void()> m_Hotkeys[256];
 };

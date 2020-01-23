@@ -50,7 +50,7 @@ Window::Window(int Width, int Height, const char* Title)
 	m_height = rc.bottom;
 
 	m_hWnd = CreateWindowA(WindowClass::GetName(),
-		Title, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 800, 600, nullptr,
+		Title, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, m_width, m_height, nullptr,
 		nullptr, WindowClass::GetInstance(), this);
 
 	if (m_hWnd == nullptr)

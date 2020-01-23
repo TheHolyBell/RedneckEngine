@@ -38,6 +38,12 @@ void Graphics::BeginFrame(float red, float green, float blue, float alpha)
 
 void Graphics::BeginFrame(float color[4])
 {
+	if (m_bImGuiEnabled)
+	{
+		ImGui_ImplDX11_NewFrame();
+		ImGui_ImplWin32_NewFrame();
+		ImGui::NewFrame();
+	}
 	m_pDeviceContext->ClearRenderTargetView(m_pTarget.Get(), color);
 	m_pDeviceContext->ClearDepthStencilView(m_pDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL,
 		1.0f, 0);
@@ -45,6 +51,12 @@ void Graphics::BeginFrame(float color[4])
 
 void Graphics::EndFrame()
 {
+	if (m_bImGuiEnabled)
+	{
+		ImGui::EndFrame();
+		ImGui::Render();
+		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+	}
 	HRESULT hr;
 #ifndef NDEBUG
 	infoManager.Set();
@@ -61,6 +73,21 @@ void Graphics::EndFrame()
 void Graphics::DrawIndexed(UINT count) noexcept(!IS_DEBUG)
 {
 	GFX_THROW_INFO_ONLY(m_pDeviceContext->DrawIndexed(count, 0, 0));
+}
+
+void Graphics::EnableImGui() noexcept
+{
+	m_bImGuiEnabled = true;
+}
+
+void Graphics::DisableImGui() noexcept
+{
+	m_bImGuiEnabled = false;
+}
+
+bool Graphics::IsImGuiEnabled() const noexcept
+{
+	return m_bImGuiEnabled;
 }
 
 DirectX::XMMATRIX Graphics::GetProjection() const noexcept
