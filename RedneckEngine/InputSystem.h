@@ -5,7 +5,7 @@
 
 enum class KeyState
 {
-	None = -1,
+	None = 0,
 	Down,
 	Up,
 	Pressed
@@ -28,7 +28,6 @@ private:
 	static void WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 	static bool ProcessMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
-	static bool ProcessMouseMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	static bool ProcessKeybdMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 	static KeyState m_iKeyMap[256];

@@ -49,8 +49,8 @@ Window::Window(int Width, int Height, const char* Title)
 	m_width = rc.right;
 	m_height = rc.bottom;
 
-	m_hWnd = CreateWindow(WindowClass::GetName(),
-		Title, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, m_width, m_height, nullptr,
+	m_hWnd = CreateWindowA(WindowClass::GetName(),
+		Title, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 800, 600, nullptr,
 		nullptr, WindowClass::GetInstance(), this);
 
 	if (m_hWnd == nullptr)
@@ -139,6 +139,8 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
 		return 1;
 
+	InputSystem::WndProc(hWnd, uMsg, wParam, lParam);
+	
 	const auto& imio = ImGui::GetIO();
 
 
@@ -166,15 +168,21 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			}
 		}
 		break;
+
 	case WM_KILLFOCUS:
 		//kbd.ClearState();
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
-	}
 
-	InputSystem::WndProc(hWnd, uMsg, wParam, lParam);
+	/*case WM_KEYDOWN:
+	case WM_KEYUP:
+	case WM_SYSKEYDOWN:
+	case WM_SYSKEYUP:
+		InputSystem::WndProc(hWnd, uMsg, wParam, lParam);
+		break;*/
+	}
 
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }

@@ -20,9 +20,14 @@ Graphics::Graphics(Window* pWnd)
 {
 	InitializeDirectX(pWnd);
 
+	m_camera.GenerateProjection(pWnd->GetWidth(), pWnd->GetHeight(), DirectX::XM_PIDIV2);
+
+	m_camera.Translate(DirectX::XMFLOAT3{ 0.0f, 0.0f, -0.5f });
+
 	// Register callback function(s) for appropriate handling resizing (i.e. for changing dimensions of buffers etc.)
 	pWnd->OnResizeHandler += [](int width, int height) {Console::WriteLine("Current window dimensions: (%d;%d)", width, height); };
 	pWnd->OnResizeHandler += [&](int width, int height) {ResizeBuffers(width, height); };
+	pWnd->OnResizeHandler += [&](int width, int height) {m_camera.GenerateProjection(width, height, DirectX::XM_PIDIV2); };
 }
 
 void Graphics::BeginFrame(float red, float green, float blue, float alpha)
@@ -56,6 +61,16 @@ void Graphics::EndFrame()
 void Graphics::DrawIndexed(UINT count) noexcept(!IS_DEBUG)
 {
 	GFX_THROW_INFO_ONLY(m_pDeviceContext->DrawIndexed(count, 0, 0));
+}
+
+DirectX::XMMATRIX Graphics::GetProjection() const noexcept
+{
+	return m_camera.GetProjection();
+}
+
+DirectX::XMMATRIX Graphics::GetView() const noexcept
+{
+	return m_camera.GetView();
 }
 
 void Graphics::InitializeDirectX(Window* pWnd)

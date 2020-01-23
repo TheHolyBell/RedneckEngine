@@ -210,7 +210,11 @@ std::string WindowErrorClass::GetDescription(DWORD msg, LPARAM lp, WPARAM wp)
 
 std::string WindowErrorClass::GetLastError()
 {
-	HRESULT hr = ::GetLastError();
+	return TranslateErrorCode(::GetLastError());
+}
+
+std::string WindowErrorClass::TranslateErrorCode(HRESULT hr) noexcept
+{
 	char* pMsgBuf = nullptr;
 	// windows will allocate memory for err string and make our pointer point to it
 	const DWORD nMsgLen = FormatMessage(

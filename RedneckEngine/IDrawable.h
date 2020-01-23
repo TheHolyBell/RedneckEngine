@@ -1,8 +1,10 @@
 #pragma once
 
+class Graphics;
+
 class IDrawable
 {
 public:
-	virtual void Draw() const noexcept = 0;
+	virtual void Draw(Graphics& gfx) const noexcept(!IS_DEBUG) = 0;
 	virtual ~IDrawable() = default;
 };

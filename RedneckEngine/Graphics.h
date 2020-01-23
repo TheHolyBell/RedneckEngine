@@ -4,9 +4,17 @@
 #include "DXGIInfoManager.h"
 #include "WindowClass.h"
 #include "RedneckException.h"
+#include <DirectXMath.h>
+#include "Camera.h"
+
+namespace Bind
+{
+	class IBindable;
+}
 
 class Graphics
 {
+	friend class Bind::IBindable;
 public:
 	class Exception : public RedneckException
 	{
@@ -58,6 +66,9 @@ public:
 	void EndFrame();
 	void DrawIndexed(UINT count) noexcept(!IS_DEBUG);
 
+	DirectX::XMMATRIX GetProjection() const noexcept;
+	DirectX::XMMATRIX GetView() const noexcept;
+
 private:
 	void InitializeDirectX(Window* pWnd);
 
@@ -74,4 +85,5 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> m_pDepthBuffer;
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_pDepthStencilView;
 
+	Camera m_camera;
 };
