@@ -48,6 +48,11 @@ DirectX::XMMATRIX SolidSphere::GetTransformXM() const noexcept
 	return DirectX::XMMatrixTranslation(m_pos.x, m_pos.y, m_pos.z);
 }
 
+void SolidSphere::Draw(Graphics& gfx) const noexcept(!IS_DEBUG)
+{
+	Drawable::Draw(gfx);
+}
+
 std::string SolidSphere::GetUID() const noexcept
 {
 	return m_name;

@@ -4,7 +4,7 @@ namespace Bind
 {
 	std::unique_ptr<VertexConstantBuffer<TransformCbuf::Transforms>> TransformCbuf::m_pVcbuf;
 
-	TransformCbuf::TransformCbuf(Graphics& gfx, const Entity& parent, UINT slot)
+	TransformCbuf::TransformCbuf(Graphics& gfx, const Drawable& parent, UINT slot)
 		:m_parent(parent)
 	{
 		if (m_pVcbuf == nullptr)

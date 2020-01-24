@@ -23,8 +23,5 @@ struct VS_OUT
 
 float4 main(VS_OUT input) : SV_TARGET
 {
-	input.normalW = normalize(input.normalW);
-	
-
 	return diffuseTexture.Sample(samplerState, input.texCoord);
 }

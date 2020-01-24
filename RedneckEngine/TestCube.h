@@ -1,17 +1,18 @@
 #pragma once
 #include "Entity.h"
+#include "Drawable.h"
 #include "IMenuViewable.h"
 
-class TestCube : public Entity, public IMenuViewable
+class TestCube : public Entity, public Drawable
 {
 public:
 	TestCube(Graphics& gfx, float size);
 	void SetPos(DirectX::XMFLOAT3 pos) noexcept;
 	void SetRotation(float pitch, float yaw, float roll) noexcept;
 
+	virtual void Draw(Graphics& gfx) const noexcept(!IS_DEBUG) override;
 	virtual DirectX::XMMATRIX GetTransformXM() const noexcept override;
 	
-	// Returns the same value
 	virtual std::string GetUID() const noexcept override;
 	
 	virtual void ItemSelected() noexcept override;

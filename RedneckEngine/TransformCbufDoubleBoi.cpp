@@ -4,7 +4,7 @@ namespace Bind
 {
 	std::unique_ptr<PixelConstantBuffer<TransformCbuf::Transforms>> TransformCbufDoubleBoi::m_pPcbuf;
 
-	TransformCbufDoubleBoi::TransformCbufDoubleBoi(Graphics& gfx, const Entity& parent, UINT slotV, UINT slotP)
+	TransformCbufDoubleBoi::TransformCbufDoubleBoi(Graphics& gfx, const Drawable& parent, UINT slotV, UINT slotP)
 		: TransformCbuf(gfx, parent, slotV)
 	{
 		if (m_pPcbuf == nullptr)

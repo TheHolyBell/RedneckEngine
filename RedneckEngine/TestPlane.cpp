@@ -78,6 +78,11 @@ void TestPlane::ItemSelected() noexcept
 	m_bMenu = true;
 }
 
+void TestPlane::Draw(Graphics& gfx) const noexcept(!IS_DEBUG)
+{
+	Drawable::Draw(gfx);
+}
+
 DirectX::XMMATRIX TestPlane::GetTransformXM() const noexcept
 {
 	using namespace DirectX;

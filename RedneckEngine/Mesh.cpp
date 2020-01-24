@@ -56,11 +56,11 @@ Mesh::Mesh(Graphics& gfx, std::vector<std::shared_ptr<Bind::IBindable>> bindPtrs
 void Mesh::Draw(Graphics& gfx, DirectX::FXMMATRIX accumulatedTransform) const noexcept(!IS_DEBUG)
 {
 	DirectX::XMStoreFloat4x4(&transform, accumulatedTransform);
-	Entity::Draw(gfx);
+	Drawable::Draw(gfx);
 }
 DirectX::XMMATRIX Mesh::GetTransformXM() const noexcept
 {
-	return DirectX::XMLoadFloat4x4(&transform);
+	return DirectX::XMMatrixScaling(scale, scale, scale) * DirectX::XMLoadFloat4x4(&transform);
 }
 
 
@@ -244,7 +244,6 @@ Model::Model(Graphics& gfx, const std::string& pathString, const float scale)
 	{
 		meshPtrs.push_back(ParseMesh(gfx, *pScene->mMeshes[i], pScene->mMaterials, pathString, scale));
 	}
-
 	int nextId = 0;
 	pRoot = ParseNode(nextId, *pScene->mRootNode);
 }
@@ -268,7 +267,7 @@ void Model::SetRootTransform(DirectX::FXMMATRIX tf) noexcept
 	pRoot->SetAppliedTransform(tf);
 }
 
-std::string Model::GetName() const noexcept
+std::string Model::GetUID() const noexcept
 {
 	return m_name;
 }
@@ -278,10 +277,16 @@ bool Model::IsMenuDrawable() const noexcept
 	return m_ShowWindow;
 }
 
+void Model::ItemSelected() noexcept
+{
+	m_ShowWindow = true;
+}
+
 void Model::DrawMenu(Graphics& gfx) noexcept
 {
 	ShowWindow(gfx, m_name.c_str());
 }
+
 
 Model::~Model() noexcept
 {}

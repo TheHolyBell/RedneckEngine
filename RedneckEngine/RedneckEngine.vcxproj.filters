@@ -100,6 +100,12 @@
     <Filter Include="Shaders\Headers">
       <UniqueIdentifier>{37ae246b-183a-411f-9bde-0aca7650d6ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Events">
+      <UniqueIdentifier>{0285b92c-d069-48d1-8a1b-0eee2b961acd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Templar">
+      <UniqueIdentifier>{8c195480-8289-47a1-87f9-2763313aaa90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -238,6 +244,12 @@
       <Filter>Header Files\Bindable</Filter>
     </ClCompile>
     <ClCompile Include="TestPlane.cpp">
+      <Filter>Header Files\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Header Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable.cpp">
       <Filter>Header Files\Drawable</Filter>
     </ClCompile>
   </ItemGroup>
@@ -446,6 +458,21 @@
     <ClInclude Include="IUID.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardEvents.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowEvents.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseEvents.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable.h">
+      <Filter>Header Files\Drawable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXGetErrorDescription.inl">
@@ -478,6 +505,27 @@
       <Filter>Shaders\VS</Filter>
     </FxCompile>
     <FxCompile Include="PhongPSNormalMap.hlsl">
+      <Filter>Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="PhongVSNotex.hlsl">
+      <Filter>Shaders\VS</Filter>
+    </FxCompile>
+    <FxCompile Include="PhongPS.hlsl">
+      <Filter>Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="PhongPSNotex.hlsl">
+      <Filter>Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="PhongPSSpec.hlsl">
+      <Filter>Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="PhongVSNormalMap.hlsl">
+      <Filter>Shaders\VS</Filter>
+    </FxCompile>
+    <FxCompile Include="PhongPSSpecNormMask.hlsl">
+      <Filter>Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="PhongPSSpecNormalMap.hlsl">
       <Filter>Shaders\PS</Filter>
     </FxCompile>
   </ItemGroup>

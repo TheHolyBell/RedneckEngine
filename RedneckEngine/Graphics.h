@@ -6,6 +6,7 @@
 #include "RedneckException.h"
 #include <DirectXMath.h>
 #include "Camera.h"
+#include "WindowEvents.h"
 
 namespace Bind
 {
@@ -61,6 +62,8 @@ public:
 	Graphics& operator=(const Graphics& rhs) = delete;
 
 	~Graphics() = default;
+
+	void OnEvent(const WindowResizeEvent& event);
 
 	void BeginFrame(float red, float green, float blue, float alpha);
 	void BeginFrame(float color[4]);

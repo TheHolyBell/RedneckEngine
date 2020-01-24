@@ -24,16 +24,16 @@ private:
 	std::string note;
 };
 
-class Mesh : public Entity
+class Mesh : public Drawable
 {
 public:
 	Mesh(Graphics& gfx, std::vector<std::shared_ptr<Bind::IBindable>> bindPtrs);
 
-	virtual std::string GetUID() const noexcept { return "Dick"; }
 	void Draw(Graphics& gfx, DirectX::FXMMATRIX accumulatedTransform) const noexcept(!IS_DEBUG);
 	virtual DirectX::XMMATRIX GetTransformXM() const noexcept override;
 private:
 	mutable DirectX::XMFLOAT4X4 transform;
+	float scale = 5;
 };
 
 class Node
@@ -128,18 +128,20 @@ private:
 	DirectX::XMFLOAT4X4 appliedTransform;
 };
 
-class Model : public IMenuViewable
+class Model : public Entity
 {
 public:
 	Model(Graphics& gfx, const std::string& pathString, float scale = 1.0f);
-	void Draw(Graphics& gfx) const noexcept(!IS_DEBUG);
 	void SetRootTransform(DirectX::FXMMATRIX tf) noexcept;
 
-	virtual std::string GetName() const noexcept;
-	virtual bool IsMenuDrawable() const noexcept;
-	virtual void DrawMenu(Graphics& gfx) noexcept;
+	std::string GetUID() const noexcept;
 
-	~Model() noexcept;
+	virtual void Draw(Graphics& gfx) const noexcept(!IS_DEBUG) override;
+	bool IsMenuDrawable() const noexcept;
+	void ItemSelected() noexcept;
+	void DrawMenu(Graphics& gfx) noexcept;
+
+	virtual ~Model() noexcept;
 private:
 	void ShowWindow(Graphics& gfx, const char* windowName = nullptr) noexcept;
 	static std::unique_ptr<Mesh> ParseMesh(Graphics& gfx, const aiMesh& mesh, const aiMaterial* const* pMaterials, const std::filesystem::path& path, float scale);

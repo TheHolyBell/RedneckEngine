@@ -5,6 +5,8 @@
 #include <d3dcompiler.h>
 #include "ConsoleClass.h"
 #include "dxerr.h"
+#include "Event.h"
+#include "WindowEvents.h"
 
 #include "ImGui\imgui_impl_dx11.h"
 #include "ImGui\imgui_impl_win32.h"
@@ -28,6 +30,12 @@ Graphics::Graphics(Window* pWnd)
 	pWnd->OnResizeHandler += [](int width, int height) {Console::WriteLine("Current window dimensions: (%d;%d)", width, height); };
 	pWnd->OnResizeHandler += [&](int width, int height) {ResizeBuffers(width, height); };
 	pWnd->OnResizeHandler += [&](int width, int height) {m_camera.GenerateProjection(width, height, DirectX::XM_PIDIV2); };
+	EventDispatcher::AddGlobalEventListener<WindowResizeEvent>(*this);
+}
+
+void Graphics::OnEvent(const WindowResizeEvent& event)
+{
+	Console::WriteLine("%d %d occurred", event.width, event.height);
 }
 
 void Graphics::BeginFrame(float red, float green, float blue, float alpha)

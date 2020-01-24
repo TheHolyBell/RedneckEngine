@@ -3,21 +3,57 @@
 #include "Graphics.h"
 #include "ImGui\imgui.h"
 #include "ConsoleClass.h"
-
+#include "Mesh.h"
+#include "OpenFileDialog.h"
+#include <filesystem>
 std::unordered_map<std::string, std::shared_ptr<IMenuViewable>> Menu::m_items;
+
+std::string GetPath()
+{
+	std::string _path;
+	
+	/*static OPENFILENAME ofn = {};       // common dialog box structure
+	static char szFile[260] = {};       // buffer for file name
+
+	// Initialize OPENFILENAME
+	ZeroMemory(&ofn, sizeof(OPENFILENAME));
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.hwndOwner = nullptr;
+	ofn.lpstrFile = szFile;
+	ofn.nMaxFile = sizeof(szFile);
+	ofn.lpstrFilter = "All\0*.*\0";
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFileTitle = NULL;
+	ofn.nMaxFileTitle = 0;
+	ofn.lpstrInitialDir = NULL;
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+	// Display the Open dialog box. 
+
+	if (GetOpenFileName(&ofn) == TRUE)
+		return ofn.lpstrFile;*/
+
+	//return "Models\\boxy.gltf";
+	auto p = OpenFileDialog::ShowDialog();
+	if (p.has_value())
+		return *p;
+	else
+		return "Models\\boxy.gltf";
+}
 
 void Menu::Render(Graphics& gfx)
 {
 	if (ImGui::Begin("Entity list"))
 	{
-		static char chosen[60] = "Chose an Entity";
+		static char chosen[256] = "Chose an Entity";
 		if (ImGui::BeginCombo("Entities", chosen))
 		{
 			for (const auto& elem : m_items)
 			{
-				if (ImGui::Selectable(elem.first.c_str()))
+				const auto& name = elem.first.c_str();
+				if (ImGui::Selectable(name))
 				{
-					strcpy_s(chosen, elem.first.c_str());
+					strcpy_s(chosen, name);
 					break;
 				}
 			}
@@ -29,7 +65,20 @@ void Menu::Render(Graphics& gfx)
 			if (it != m_items.end())
 				it->second->ItemSelected();
 		}
+		if (ImGui::Button("Remove object"))
+		{
+			RemoveItem(chosen);
+		}
 	}
+	
+	if (ImGui::Button("Load new object"))
+	{
+		//
+		auto path = GetPath();
+		Console::WriteLine(path);
+		EntityManager::AddEntity(std::make_shared<Model>(gfx, path));
+	}
+
 	ImGui::End();
 
 	for (auto& i : m_items)
@@ -42,7 +91,7 @@ void Menu::AddItem(std::shared_ptr<IMenuViewable> item)
 	std::string name = item->GetUID();
 	auto it = m_items.find(name);
 	if (it == m_items.end())
-		m_items[name] = std::move(item);
+		m_items[name] = item;
 	else
 	{
 		Console::SetConsoleColor(ConsoleColor::Red);

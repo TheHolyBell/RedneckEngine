@@ -3,6 +3,8 @@
 #include "ExceptionMacro.h"
 #include "InputSystem.h"
 #include "ImGui\imgui_impl_win32.h"
+#include "Event.h"
+#include "WindowEvents.h"
 
 Window::WindowClass Window::WindowClass::wndClass;
 
@@ -139,18 +141,23 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
 		return 1;
 
-	InputSystem::WndProc(hWnd, uMsg, wParam, lParam);
 	
 	const auto& imio = ImGui::GetIO();
 
 
 	switch (uMsg)
 	{
+	case WM_MOVE:
+		POINTS p = MAKEPOINTS(lParam);
+		EventDispatcher::DispatchGlobalEvent<WindowMovedEvent>(p.x, p.y);
+		break;
 	case WM_SIZE:
 		m_width = LOWORD(lParam);
 		m_height = HIWORD(lParam);
 		if (m_width != 0 && m_height != 0)
 			OnResizeHandler(m_width, m_height);
+		
+		EventDispatcher::DispatchGlobalEvent<WindowResizeEvent>((size_t)m_width, (size_t)m_height);
 		break;
 	case WM_ACTIVATE:
 		// confine/free cursor on window to foreground/background if cursor disabled
@@ -175,6 +182,9 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
+	default:
+		InputSystem::WndProc(hWnd, uMsg, wParam, lParam);
+		break;
 
 	/*case WM_KEYDOWN:
 	case WM_KEYUP:

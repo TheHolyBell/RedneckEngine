@@ -2,6 +2,11 @@
 #include "ImGui/imgui.h"
 #include "Math.h"
 #include <algorithm>
+#include "Event.h"
+#include "MouseEvents.h"
+#include "KeyboardEvents.h"
+#include "InputSystem.h"
+#include "ConsoleClass.h"
 
 using namespace DirectX;
 
@@ -11,6 +16,7 @@ float Camera::travelSpeed = 30.0f;
 Camera::Camera() noexcept
 {
 	Reset();
+	EventDispatcher::AddGlobalEventListener<MouseMovedEvent>(*this);
 }
 
 DirectX::XMMATRIX Camera::GetProjection() const noexcept
@@ -100,4 +106,35 @@ DirectX::XMFLOAT3 Camera::GetPos() const noexcept
 void Camera::GenerateProjection(int width, int height, float fov)
 {
 	m_projection = DirectX::XMMatrixPerspectiveFovLH(fov, (float)width / (float)height, 1.0f, 1000.0f);
+}
+
+void Camera::Update(float dt)
+{
+	if (GetAsyncKeyState('W'))
+		Translate({ 0.0f, 0.0f, dt });
+	if (GetAsyncKeyState('S'))
+		Translate({ 0.0f, 0.0f, -dt });
+	if (GetAsyncKeyState('A'))
+		Translate({ -dt, 0.0f, 0.0f });
+	if (GetAsyncKeyState('D'))
+		Translate({ dt, 0.0f, 0.0f });
+	if (GetAsyncKeyState(VK_SPACE))
+		Translate({ 0.0f, dt, 0.0f });
+	if (GetAsyncKeyState(VK_SHIFT))
+		Translate({ 0.0f, -dt, 0.0f });
+}
+
+void Camera::OnEvent(const MouseMovedEvent& event)
+{
+	if (InputSystem::IsMouseButtonDown(InputSystem::MouseButton::Right))
+	{
+		// Make each pixel correspond to a quarter of a degree.
+		float dx = XMConvertToRadians(0.25f * static_cast<float>(event.pos.x - event.old_pos.x));
+		float dy = XMConvertToRadians(0.25f * static_cast<float>(event.pos.y - event.old_pos.y));
+
+		dx *= 250;
+		dy *= 250;
+
+		Rotate(dx, dy);
+	}
 }

@@ -15,9 +15,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR CommandLine, int)
 
 	ImGuiManager::Initialize();
 
-	App app{ 1280, 800, "Hello" };
+	try
+	{
+		App app{ 1280, 800, "Hello" };
 
-	app.Run();
+		app.Run();
+	}
+	catch (std::exception & exc)
+	{
+		Console::WriteLine(exc.what());
+	}
 	
 	ImGuiManager::Shutdown();
 	Console::Shutdown();

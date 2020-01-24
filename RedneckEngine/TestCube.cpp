@@ -58,6 +58,11 @@ void TestCube::SetRotation(float pitch, float yaw, float roll) noexcept
 	this->roll = roll;
 }
 
+void TestCube::Draw(Graphics& gfx) const noexcept(!IS_DEBUG)
+{
+	Drawable::Draw(gfx);
+}
+
 DirectX::XMMATRIX TestCube::GetTransformXM() const noexcept
 {
 	return XMMatrixRotationRollPitchYaw(pitch, yaw, roll) *

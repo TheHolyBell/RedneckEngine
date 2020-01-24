@@ -1,6 +1,6 @@
 #pragma once
 #include "ConstantBuffers.h"
-#include "Entity.h"
+#include "Drawable.h"
 #include <DirectXMath.h>
 
 namespace Bind
@@ -14,13 +14,13 @@ namespace Bind
 			DirectX::XMMATRIX modelViewProj;
 		};
 	public:
-		TransformCbuf(Graphics& gfx, const Entity& parent, UINT slot = 0);
+		TransformCbuf(Graphics& gfx, const Drawable& parent, UINT slot = 0);
 		virtual void Bind(Graphics& gfx) noexcept override;
 	protected:
 		void UpdateBindImpl(Graphics& gfx, const Transforms& tf) noexcept;
 		Transforms GetTransforms(Graphics& gfx) noexcept;
 	private:
 		static std::unique_ptr<VertexConstantBuffer<Transforms>> m_pVcbuf;
-		const Entity& m_parent;
+		const Drawable& m_parent;
 	};
 }

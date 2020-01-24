@@ -1,9 +1,10 @@
 #pragma once
 
 #include "Entity.h"
+#include "Drawable.h"
 #include "IMenuViewable.h"
 
-class TestPlane : public Entity, public IMenuViewable
+class TestPlane : public Entity, public Drawable
 {
 public:
 	TestPlane(Graphics& gfx, float size, DirectX::XMFLOAT4 color = { 1.0f, 1.0f, 1.0f,1.0f });
@@ -11,6 +12,8 @@ public:
 	virtual bool IsMenuDrawable() const noexcept override;
 	virtual void DrawMenu(Graphics& gfx) noexcept override;
 	virtual void ItemSelected() noexcept override;
+
+	virtual void Draw(Graphics& gfx) const noexcept(!IS_DEBUG) override;
 
 	virtual DirectX::XMMATRIX GetTransformXM() const noexcept override;
 	virtual std::string GetUID() const noexcept override;
