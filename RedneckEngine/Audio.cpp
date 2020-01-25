@@ -1,6 +1,7 @@
 #include "Audio.h"
 #include "ImGui/imgui.h"
 #include "OpenFileDialog.h"
+#include "Graphics.h"
 
 static HRESULT FindChunk(HANDLE hFile, DWORD fourcc, DWORD& dwChunkSize, DWORD& dwChunkDataPosition)
 {
@@ -199,9 +200,24 @@ bool MusicClass::IsPlaying() const
 	return m_bIsPlaying;
 }
 
-void MusicClass::SpawnControlWindow()
+bool MusicClass::IsMenuDrawable() const noexcept
 {
-	if (ImGui::Begin("Music control panel"))
+	return m_bMenu;
+}
+
+void MusicClass::ItemSelected() noexcept
+{
+	m_bMenu = true;
+}
+
+std::string MusicClass::GetUID() const noexcept
+{
+	return typeid(MusicClass).name();
+}
+
+void MusicClass::DrawMenu(Graphics& gfx) noexcept
+{
+	if (ImGui::Begin("Music control panel", &m_bMenu))
 	{
 		
 		ImGui::Text(m_filename.c_str());

@@ -6,6 +6,7 @@
 #include "Texture.h"
 #include "Sampler.h"
 #include "Blender.h"
+#include "DepthStencil.h"
 
 TestPlane::TestPlane(Graphics& gfx, float size, DirectX::XMFLOAT4 color)
 	: pmc({color})
@@ -36,6 +37,8 @@ TestPlane::TestPlane(Graphics& gfx, float size, DirectX::XMFLOAT4 color)
 	AddBind(std::make_shared<Blender>(gfx, true, 0.5f));
 
 	AddBind(Rasterizer::Resolve(gfx, true));
+
+	AddBind(DepthStencil::Resolve(gfx));
 }
 
 bool TestPlane::IsMenuDrawable() const noexcept

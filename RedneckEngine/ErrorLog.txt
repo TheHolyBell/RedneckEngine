@@ -1,0 +1,7 @@
+Redneck Graphics Info Exception
+
+[Error Info]
+ID3D11DeviceContext::DrawIndexed: The Shader Resource View dimension declared in the shader code (TEXTURECUBE) does not match the view type bound to slot 0 of the Pixel Shader unit (TEXTURE2D).  This mismatch is invalid if the shader actually uses the view (e.g. it is not skipped due to shader code branching).
+
+[File] D:\VisualStudio\RedneckEngine\RedneckEngine\Graphics.cpp
+[Line] 83

@@ -1,0 +1,7 @@
+Redneck Graphics Exception
+[Error Code] 0x80070002 (2147942402)
+[Error String] ERROR_FILE_NOT_FOUND
+[Description] The system cannot find the file specified.
+
+[File] D:\VisualStudio\RedneckEngine\RedneckEngine\VertexShader.cpp
+[Line] 20

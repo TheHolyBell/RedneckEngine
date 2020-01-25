@@ -1,6 +1,7 @@
 #include <xaudio2.h>
 #include <string>
 #include <wrl/client.h>
+#include "IMenuViewable.h"
 
 #ifdef _XBOX //Big-Endian
 #define fourccRIFF 'RIFF'
@@ -31,7 +32,7 @@ protected:
 	HRESULT Initialize();
 };
 
-class MusicClass : protected AudioEngine
+class MusicClass : protected AudioEngine, public IMenuViewable
 {
 private:
 	HRESULT OpenFile(const std::wstring& filename);
@@ -46,6 +47,7 @@ private:
 	IXAudio2SourceVoice* m_pSourceVoice = nullptr;
 
 	bool m_bIsPlaying = false;
+	bool m_bMenu = false;
 public:
 	void Initialize(const std::string& filename);
 	void Play();
@@ -55,5 +57,8 @@ public:
 
 	bool IsPlaying() const;
 
-	void SpawnControlWindow();
+	virtual bool IsMenuDrawable() const noexcept override;
+	virtual void DrawMenu(Graphics& gfx) noexcept override;
+	virtual void ItemSelected() noexcept override;
+	virtual std::string GetUID() const noexcept override;
 };

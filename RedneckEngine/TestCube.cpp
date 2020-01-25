@@ -6,7 +6,7 @@
 #include "Texture.h"
 #include "Sampler.h"
 #include "TransformCbufDoubleBoi.h"
-#include "Menu.h"
+#include "DepthStencil.h"
 
 using namespace DirectX;
 
@@ -44,6 +44,10 @@ TestCube::TestCube(Graphics& gfx, float size)
 	AddBind(std::make_shared<Blender>(gfx, false, 0.5f));
 
 	AddBind(Rasterizer::Resolve(gfx, false));
+
+	AddBind(Topology::Resolve(gfx, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST));
+
+	AddBind(DepthStencil::Resolve(gfx));
 }
 
 void TestCube::SetPos(DirectX::XMFLOAT3 pos) noexcept

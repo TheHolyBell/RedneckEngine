@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "Mesh.h"
 #include "SolidSphere.h"
+#include "Cubemap.h"
 
 #include <memory>
 #include <set>
@@ -29,5 +30,6 @@ private:
 	Timer m_timer;
 	float speed_factor = 1.0f;
 	std::string m_commandLine;
+	std::shared_ptr<Cubemap> m_cubemap;
 	float m_clearColor[4] = { 0.07f, 0.0f, 0.05f, 1.0f };
 };

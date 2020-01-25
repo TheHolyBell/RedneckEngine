@@ -7,6 +7,7 @@
 #include "OpenFileDialog.h"
 #include "ImGuiManager.h"
 #include "Application.h"
+#include <fstream>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR CommandLine, int)
 {
@@ -21,9 +22,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR CommandLine, int)
 
 		app.Run();
 	}
-	catch (std::exception & exc)
+	catch (std::exception& exc)
 	{
+		std::ofstream fout("ErrorLog.txt");
 		Console::WriteLine(exc.what());
+		fout << exc.what();
 	}
 	
 	ImGuiManager::Shutdown();

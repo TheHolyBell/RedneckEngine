@@ -1,0 +1,4 @@
+Chili Model Exception
+[File] D:\VisualStudio\RedneckEngine\RedneckEngine\Mesh.cpp
+[Line] 240
+[Note] Unable to open file "Models\boxy.gltf".

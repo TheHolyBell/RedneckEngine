@@ -106,6 +106,9 @@
     <Filter Include="Shaders\Templar">
       <UniqueIdentifier>{8c195480-8289-47a1-87f9-2763313aaa90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\TextureLoaders">
+      <UniqueIdentifier>{a0021a10-665e-47f6-bad5-17f1932346be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -250,6 +253,21 @@
       <Filter>Header Files\Events</Filter>
     </ClCompile>
     <ClCompile Include="Drawable.cpp">
+      <Filter>Header Files\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="DepthStencil.cpp">
+      <Filter>Header Files\Bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="DDSTextureLoader.cpp">
+      <Filter>ThirdParty\TextureLoaders</Filter>
+    </ClCompile>
+    <ClCompile Include="WICTextureLoader.cpp">
+      <Filter>ThirdParty\TextureLoaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture3D.cpp">
+      <Filter>Header Files\Bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="Cubemap.cpp">
       <Filter>Header Files\Drawable</Filter>
     </ClCompile>
   </ItemGroup>
@@ -473,6 +491,21 @@
     <ClInclude Include="Drawable.h">
       <Filter>Header Files\Drawable</Filter>
     </ClInclude>
+    <ClInclude Include="Cubemap.h">
+      <Filter>Header Files\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="DepthStencil.h">
+      <Filter>Header Files\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="DDSTextureLoader.h">
+      <Filter>ThirdParty\TextureLoaders</Filter>
+    </ClInclude>
+    <ClInclude Include="WICTextureLoader.h">
+      <Filter>ThirdParty\TextureLoaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture3D.h">
+      <Filter>Header Files\Bindable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXGetErrorDescription.inl">
@@ -526,6 +559,12 @@
       <Filter>Shaders\PS</Filter>
     </FxCompile>
     <FxCompile Include="PhongPSSpecNormalMap.hlsl">
+      <Filter>Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="CubeMapVS.hlsl">
+      <Filter>Shaders\VS</Filter>
+    </FxCompile>
+    <FxCompile Include="CubeMapPS.hlsl">
       <Filter>Shaders\PS</Filter>
     </FxCompile>
   </ItemGroup>

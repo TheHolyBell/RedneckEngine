@@ -5,7 +5,7 @@
 #include "ConsoleClass.h"
 #include "Mesh.h"
 #include "OpenFileDialog.h"
-#include <filesystem>
+
 std::unordered_map<std::string, std::shared_ptr<IMenuViewable>> Menu::m_items;
 
 std::string GetPath()
@@ -38,7 +38,7 @@ std::string GetPath()
 	if (p.has_value())
 		return *p;
 	else
-		return "Models\\boxy.gltf";
+		return "Models\\nanosuit.obj";
 }
 
 void Menu::Render(Graphics& gfx)
@@ -75,7 +75,6 @@ void Menu::Render(Graphics& gfx)
 	{
 		//
 		auto path = GetPath();
-		Console::WriteLine(path);
 		EntityManager::AddEntity(std::make_shared<Model>(gfx, path));
 	}
 

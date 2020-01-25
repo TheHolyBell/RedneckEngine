@@ -8,6 +8,8 @@
 #include "VertexBuffer.h"
 #include "VertexShader.h"
 #include "Texture.h"
+#include "Texture3D.h"
+#include "DepthStencil.h"
 #include "Sampler.h"
 #include "Blender.h"
 #include "Rasterizer.h"

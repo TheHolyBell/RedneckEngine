@@ -3,6 +3,7 @@
 #include "GraphicsThrowMacros.h"
 #include "Sphere.h"
 #include "Vertex.h"
+#include "DepthStencil.h"
 
 SolidSphere::SolidSphere(Graphics& gfx, float radius)
 {
@@ -40,6 +41,8 @@ SolidSphere::SolidSphere(Graphics& gfx, float radius)
 	AddBind(Blender::Resolve(gfx, false));
 
 	AddBind(Rasterizer::Resolve(gfx, false));
+
+	AddBind(DepthStencil::Resolve(gfx));
 }
 
 
