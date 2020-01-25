@@ -74,14 +74,14 @@ void Camera::Reset() noexcept
 {
 	pos = { -13.5f, 6.0f, 3.5f };
 	pitch = 0.5f;
-	yaw = PI / 2.0f;
+	yaw = Math::PI / 2.0f;
 	travelSpeed = 30.0f;
 }
 
 void Camera::Rotate(float dx, float dy) noexcept
 {
-	yaw = wrap_angle(yaw + dx * rotationSpeed);
-	pitch = std::clamp(pitch + dy * rotationSpeed, 0.995f * -PI / 2.0f, 0.995f * PI / 2.0f);
+	yaw = Math::wrap_angle(yaw + dx * rotationSpeed);
+	pitch = std::clamp(pitch + dy * rotationSpeed, 0.995f * -Math::PI / 2.0f, 0.995f * Math::PI / 2.0f);
 }
 
 void Camera::Translate(DirectX::XMFLOAT3 translation) noexcept
