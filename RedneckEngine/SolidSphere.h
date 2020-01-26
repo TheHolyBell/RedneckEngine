@@ -14,8 +14,15 @@ public:
 
 	virtual std::string GetUID() const noexcept;
 
-	void SetPos(DirectX::XMFLOAT3 pos) noexcept;
-private:
+	virtual void SetPos(DirectX::XMFLOAT3 pos) noexcept;
+
+
+	virtual bool IsMenuDrawable() const noexcept;
+	virtual void DrawMenu(Graphics& gfx) noexcept;
+	virtual void ItemSelected() noexcept;
+
+protected:
 	DirectX::XMFLOAT3 m_pos = { 1.0f, 1.0f, 1.0f };
 	std::string m_name;
+	bool m_bMenu = false;
 };

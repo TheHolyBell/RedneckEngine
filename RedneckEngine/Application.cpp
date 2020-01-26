@@ -10,12 +10,16 @@
 #include "TestCylinder.h"
 #include <random>
 #include "Math.h"
+#include "PhysicsSphere.h"
+#include "PhysicsWorld.h"
+#include "PhysicsPlane.h"
 
 enum class EntityType
 {
 	Box,
 	Plane,
-	Cylinder
+	Cylinder,
+	Sphere
 };
 
 std::shared_ptr<Entity> EntityFactory(Graphics& gfx, EntityType type)
@@ -27,7 +31,7 @@ std::shared_ptr<Entity> EntityFactory(Graphics& gfx, EntityType type)
 	static std::uniform_real_distribution<float> ddist{ 0.0f,Math::PI * 0.5f };
 	static std::uniform_real_distribution<float> odist{ 0.0f,Math::PI * 0.08f };
 	static std::uniform_real_distribution<float> xdist{ 10.0f,70.0f };
-	static std::uniform_real_distribution<float> ydist{ 10.0f,30.0f };
+	static std::uniform_real_distribution<float> ydist{ 70.0f,100.0f };
 	static std::uniform_real_distribution<float> zdist{ 10.0f,60.0f };
 	static std::uniform_int_distribution<int> tdist{ 3,30 };
 
@@ -49,8 +53,16 @@ std::shared_ptr<Entity> EntityFactory(Graphics& gfx, EntityType type)
 	}
 	case EntityType::Plane:
 	{
-		auto pPlane = std::make_shared<TestPlane>(gfx, planedist(rng));
+		auto pPlane = std::make_shared<PhysicsPlane>(gfx, planedist(rng));
+		PhysicsWorld::AddEntity(pPlane);
 		return pPlane;
+	}
+	case EntityType::Sphere:
+	{
+		auto pSphere = std::make_shared<PhysicsSphere>(gfx, 5, 1000);
+		pSphere->SetPos({ xdist(rng), ydist(rng), zdist(rng) });
+		PhysicsWorld::AddEntity(pSphere);
+		return pSphere;
 	}
 	}
 }
@@ -62,6 +74,23 @@ App::App(int width, int height, const char* title, const std::string& commandLin
 	m_wnd = Window::CreateInstance(width, height, title);
 	m_pGfx = std::make_unique<Graphics>(m_wnd);
 	
+	PhysicsWorld::Initialize();
+
+	InputSystem::RegisterHotkey(VK_ADD, [&]
+	{
+		static float r = 5.0f;
+		auto pSphere = std::make_shared<PhysicsSphere>(*m_pGfx, r, 5);
+		auto& camera = m_pGfx->m_camera;
+		auto camPos = camera.GetPos();
+		pSphere->SetPos({camPos.x, camPos.y, camPos.z});
+		DirectX::XMFLOAT3 look;
+		DirectX::XMStoreFloat3(&look, camera.GetLookVector() * 20);
+		pSphere->GetRigidBody()->setLinearVelocity(btVector3(look.x, look.y, look.z));
+		PhysicsWorld::AddEntity(pSphere);
+		EntityManager::AddEntity(pSphere);
+		r += 0.01f;
+	});
+
 	//EntityManager::AddEntity(std::make_shared<Model>(*m_pGfx, OpenFileDialog::ShowDialog(), 0.5f));
 	//EntityManager::AddEntity(std::make_shared<SolidSphere>(*m_pGfx, 1));
 	
@@ -73,6 +102,7 @@ App::App(int width, int height, const char* title, const std::string& commandLin
 	EntityManager::AddEntity(EntityFactory(*m_pGfx, EntityType::Plane));
 	EntityManager::AddEntity(EntityFactory(*m_pGfx, EntityType::Cylinder));
 	EntityManager::AddEntity(EntityFactory(*m_pGfx, EntityType::Cylinder));
+	EntityManager::AddEntity(EntityFactory(*m_pGfx, EntityType::Sphere));
 	Menu::AddItem(std::make_shared<MusicClass>());
 	Menu::AddItem(m_cubemap);
 }
@@ -101,12 +131,14 @@ void App::DoFrame()
  
 
 	auto& camera = m_pGfx->m_camera;
-	camera.Update(dt);
+	camera.Update(dt * 2);
 
 	auto camPos = camera.GetPos();
 	m_cubemap->SetTransform(DirectX::XMMatrixTranslation(camPos.x, camPos.y, camPos.z));
 	m_cubemap->Draw(*m_pGfx);
 	
+	PhysicsWorld::Update(dt);
+
 	EntityManager::Update(dt);
 	EntityManager::Render(*m_pGfx);
 	Menu::Render(*m_pGfx);

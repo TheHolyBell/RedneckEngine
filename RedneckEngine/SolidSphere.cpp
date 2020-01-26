@@ -65,3 +65,17 @@ void SolidSphere::SetPos(DirectX::XMFLOAT3 pos) noexcept
 {
 	m_pos = pos;
 }
+
+bool SolidSphere::IsMenuDrawable() const noexcept
+{
+	return m_bMenu;
+}
+
+void SolidSphere::DrawMenu(Graphics& gfx) noexcept
+{
+}
+
+void SolidSphere::ItemSelected() noexcept
+{
+	m_bMenu = false;
+}

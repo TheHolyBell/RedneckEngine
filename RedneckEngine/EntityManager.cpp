@@ -63,3 +63,8 @@ void EntityManager::Render(Graphics& gfx)
 	for (auto& e : m_entities)
 		e.second->Draw(gfx);
 }
+
+void EntityManager::Clear()
+{
+	m_entities = std::unordered_map<std::string, std::shared_ptr<Entity>>();
+}

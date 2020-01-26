@@ -323,6 +323,9 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="OpenFileDialog.cpp" />
+    <ClCompile Include="PhysicsPlane.cpp" />
+    <ClCompile Include="PhysicsSphere.cpp" />
+    <ClCompile Include="PhysicsWorld.cpp" />
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="Rasterizer.cpp" />
     <ClCompile Include="RedneckException.cpp" />
@@ -616,6 +619,8 @@
     <ClInclude Include="OpenFileDialog.h" />
     <ClInclude Include="ExceptionMacro.h" />
     <ClInclude Include="PhysicsEntity.h" />
+    <ClInclude Include="PhysicsPlane.h" />
+    <ClInclude Include="PhysicsSphere.h" />
     <ClInclude Include="PhysicsWorld.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="Plane.h" />

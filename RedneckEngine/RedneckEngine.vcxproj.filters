@@ -112,6 +112,9 @@
     <Filter Include="ThirdParty\BulletPhysics">
       <UniqueIdentifier>{29df55e2-87fc-4d2f-b477-37bc34a3845f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PhysicsSystem\Test">
+      <UniqueIdentifier>{6173ad29-2d7a-4124-8a42-0fc8fef26cdc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -698,6 +701,15 @@
     </ClCompile>
     <ClCompile Include="TestCylinder.cpp">
       <Filter>Header Files\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsWorld.cpp">
+      <Filter>PhysicsSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsSphere.cpp">
+      <Filter>PhysicsSystem\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsPlane.cpp">
+      <Filter>PhysicsSystem\Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1588,6 +1600,12 @@
     </ClInclude>
     <ClInclude Include="TestCylinder.h">
       <Filter>Header Files\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsSphere.h">
+      <Filter>PhysicsSystem\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsPlane.h">
+      <Filter>PhysicsSystem\Test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -51,9 +51,9 @@ void TestPlane::DrawMenu(Graphics& gfx) noexcept
 	if (ImGui::Begin(m_UID.c_str(), &m_bMenu))
 	{
 		ImGui::Text("Position");
-		ImGui::SliderFloat("X", &pos.x, -80.0f, 80.0f, "%.1f");
-		ImGui::SliderFloat("Y", &pos.y, -80.0f, 80.0f, "%.1f");
-		ImGui::SliderFloat("Z", &pos.z, -80.0f, 80.0f, "%.1f");
+		ImGui::SliderFloat("X", &m_pos.x, -80.0f, 80.0f, "%.1f");
+		ImGui::SliderFloat("Y", &m_pos.y, -80.0f, 80.0f, "%.1f");
+		ImGui::SliderFloat("Z", &m_pos.z, -80.0f, 80.0f, "%.1f");
 		ImGui::Text("Orientation");
 		ImGui::SliderAngle("Pitch", &pitch, -180.0f, 180.0f);
 		ImGui::SliderAngle("Yaw", &yaw, -180.0f, 180.0f);
@@ -90,7 +90,7 @@ DirectX::XMMATRIX TestPlane::GetTransformXM() const noexcept
 {
 	using namespace DirectX;
 	return XMMatrixRotationRollPitchYaw(pitch, yaw, roll) *
-		XMMatrixTranslation(pos.x, pos.y, pos.z);
+		XMMatrixTranslation(m_pos.x, m_pos.y, m_pos.z);
 }
 
 std::string TestPlane::GetUID() const noexcept

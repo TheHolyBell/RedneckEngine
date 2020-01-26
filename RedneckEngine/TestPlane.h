@@ -18,12 +18,13 @@ public:
 	virtual DirectX::XMMATRIX GetTransformXM() const noexcept override;
 	virtual std::string GetUID() const noexcept override;
 
+protected:
+	DirectX::XMFLOAT3 m_pos = { 0.0f, 0.0f, 0.0f };
 private:
 	struct PSMaterialConstant
 	{
 		DirectX::XMFLOAT4 color;
 	}pmc;
-	DirectX::XMFLOAT3 pos = { 0.0f, 0.0f, 0.0f };
 	float pitch = 0.0f;
 	float yaw = 0.0f;
 	float roll = 0.0f;

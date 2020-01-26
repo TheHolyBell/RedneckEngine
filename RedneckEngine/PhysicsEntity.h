@@ -1,13 +1,10 @@
 #pragma once
-#include "Entity.h"
-#include "Drawable.h"
+#include <btBulletDynamicsCommon.h>
 
-class PhysicsEntity : public Entity, public Drawable
+class IPhysicsEntity
 {
 public:
-	PhysicsEntity(std::shared_ptr<Drawable> entity);
+	virtual ~IPhysicsEntity() = default;
 
-	virtual DirectX::XMMATRIX GetTransformXM() const noexcept = 0;
-private:
-	std::shared_ptr<Drawable> m_Entity;
+	virtual btRigidBody* GetRigidBody() const noexcept = 0;
 };

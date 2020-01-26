@@ -69,6 +69,11 @@ void Menu::Render(Graphics& gfx)
 		{
 			RemoveItem(chosen);
 		}
+		if (ImGui::Button("Clear World"))
+		{
+			Clear();
+			EntityManager::Clear();
+		}
 	}
 	
 	if (ImGui::Button("Load new object"))
@@ -111,4 +116,9 @@ void Menu::RemoveItem(const std::string& name)
 		Console::SetConsoleColor(ConsoleColor::White);
 	}
 	EntityManager::RemoveEntity(name);
+}
+
+void Menu::Clear()
+{
+	m_items = std::unordered_map<std::string, std::shared_ptr<IMenuViewable>>();
 }

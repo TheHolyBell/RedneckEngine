@@ -19,6 +19,8 @@ public:
 
 	virtual void Update(float dt) override;
 
+	DirectX::XMVECTOR GetLookVector() const noexcept;
+
 	void OnEvent(const MouseMovedEvent& event);
 private:
 	DirectX::XMFLOAT3 pos = {};

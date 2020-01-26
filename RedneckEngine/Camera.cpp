@@ -124,6 +124,15 @@ void Camera::Update(float dt)
 		Translate({ 0.0f, -dt, 0.0f });
 }
 
+DirectX::XMVECTOR Camera::GetLookVector() const noexcept
+{
+	using namespace DirectX;
+	XMVECTOR lookVector = XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
+	lookVector = XMVector3Transform(lookVector, XMMatrixRotationRollPitchYaw(pitch, yaw, 0.0f));
+
+	return XMVector3Normalize(lookVector);
+}
+
 void Camera::OnEvent(const MouseMovedEvent& event)
 {
 	if (InputSystem::IsMouseButtonDown(InputSystem::MouseButton::Right))

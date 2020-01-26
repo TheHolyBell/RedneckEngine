@@ -14,7 +14,7 @@ public:
 
 	static void Update(float dt);
 	static void Render(Graphics& gfx);
-
+	static void Clear();
 private:
 	static std::unordered_map<std::string, std::shared_ptr<Entity>> m_entities;
 };
