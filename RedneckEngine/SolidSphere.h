@@ -22,7 +22,11 @@ public:
 	virtual void ItemSelected() noexcept;
 
 protected:
+	struct PSColorConstant
+	{
+		DirectX::XMFLOAT4 color = {1.0f, 0.0f, 0.0f, 1.0f};
+	}pmc;
 	DirectX::XMFLOAT3 m_pos = { 1.0f, 1.0f, 1.0f };
-	std::string m_name;
+	std::string m_UID;
 	bool m_bMenu = false;
 };

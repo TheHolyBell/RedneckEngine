@@ -20,14 +20,14 @@ public:
 
 protected:
 	DirectX::XMFLOAT3 m_pos = { 0.0f, 0.0f, 0.0f };
+	float pitch = 0.0f;
+	float yaw = 0.0f;
+	float roll = 0.0f;
 private:
 	struct PSMaterialConstant
 	{
 		DirectX::XMFLOAT4 color;
 	}pmc;
-	float pitch = 0.0f;
-	float yaw = 0.0f;
-	float roll = 0.0f;
 
 	std::string m_UID = "";
 	bool m_bMenu = false;

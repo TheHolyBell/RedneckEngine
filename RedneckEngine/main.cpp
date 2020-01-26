@@ -27,6 +27,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR CommandLine, int)
 		std::ofstream fout("ErrorLog.txt");
 		Console::WriteLine(exc.what());
 		fout << exc.what();
+		Console::ReadKey();
 	}
 	
 	ImGuiManager::Shutdown();

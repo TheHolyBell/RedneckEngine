@@ -1,21 +1,24 @@
 #pragma once
 
 #include <btBulletDynamicsCommon.h>
-#include "PhysicsEntity.h"
+#include "IRigidBody.h"
+#include "ICollidable.h"
 #include <memory>
 
 class PhysicsWorld
 {
 public:
 	static void Initialize();
-	static void AddEntity(std::shared_ptr<IPhysicsEntity> entity);
-	static void RemoveEntity(IPhysicsEntity* entity);
-	static void Update(float dt);
+	static void Shutdown();
 
+	static void AddRigidBody(std::shared_ptr<IRigidBody> entity);
+	static void RemoveRigidBody(IRigidBody* entity);
+	static void AddCollidableBody(ICollidable* entity);
+	static void Update(float dt);
 private:
 	static btDynamicsWorld* m_world;
+	static btBroadphaseInterface* m_broadphase;
 	static btDispatcher* m_dispatcher;
 	static btCollisionConfiguration* m_collisionConfig;
-	static btBroadphaseInterface* m_broadphase;
 	static btConstraintSolver* m_solver;
 };

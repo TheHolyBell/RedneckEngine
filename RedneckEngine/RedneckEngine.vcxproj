@@ -323,6 +323,9 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="OpenFileDialog.cpp" />
+    <ClCompile Include="PhysicsBox.cpp" />
+    <ClCompile Include="PhysicsCamera.cpp" />
+    <ClCompile Include="PhysicsCylinder.cpp" />
     <ClCompile Include="PhysicsPlane.cpp" />
     <ClCompile Include="PhysicsSphere.cpp" />
     <ClCompile Include="PhysicsWorld.cpp" />
@@ -592,6 +595,7 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="GraphicsThrowMacros.h" />
     <ClInclude Include="IBindable.h" />
+    <ClInclude Include="ICollidable.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IMenuViewable.h" />
     <ClInclude Include="ImGuiManager.h" />
@@ -618,7 +622,10 @@
     <ClInclude Include="MouseEvents.h" />
     <ClInclude Include="OpenFileDialog.h" />
     <ClInclude Include="ExceptionMacro.h" />
-    <ClInclude Include="PhysicsEntity.h" />
+    <ClInclude Include="PhysicsBox.h" />
+    <ClInclude Include="PhysicsCamera.h" />
+    <ClInclude Include="PhysicsCylinder.h" />
+    <ClInclude Include="IRigidBody.h" />
     <ClInclude Include="PhysicsPlane.h" />
     <ClInclude Include="PhysicsSphere.h" />
     <ClInclude Include="PhysicsWorld.h" />

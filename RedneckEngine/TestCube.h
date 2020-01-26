@@ -7,7 +7,7 @@ class TestCube : public Entity, public Drawable
 {
 public:
 	TestCube(Graphics& gfx, float size);
-	void SetPos(DirectX::XMFLOAT3 pos) noexcept;
+	virtual void SetPos(DirectX::XMFLOAT3 pos) noexcept;
 	void SetRotation(float pitch, float yaw, float roll) noexcept;
 
 	virtual void Draw(Graphics& gfx) const noexcept(!IS_DEBUG) override;
@@ -18,6 +18,11 @@ public:
 	virtual void ItemSelected() noexcept override;
 	virtual bool IsMenuDrawable() const noexcept override;
 	virtual void DrawMenu(Graphics& gfx) noexcept override;
+protected:
+	DirectX::XMFLOAT3 m_pos = { 1.0f, 1.0f, 1.0f };
+	float pitch = 0.0f;
+	float yaw = 0.0f;
+	float roll = 0.0f;
 private:
 	struct PSMaterialConstant
 	{
@@ -26,10 +31,6 @@ private:
 		alignas(4) bool normalMappingEnabled = true;
 		float padding;
 	} pmc;
-	DirectX::XMFLOAT3 m_pos = { 1.0f, 1.0f, 1.0f };
-	float pitch = 0.0f;
-	float yaw = 0.0f;
-	float roll = 0.0f;
 
 	std::string m_UID = "";
 	bool m_bMenu = false;

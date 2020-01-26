@@ -1,10 +1,10 @@
 #pragma once
 #include <btBulletDynamicsCommon.h>
 
-class IPhysicsEntity
+class IRigidBody
 {
 public:
-	virtual ~IPhysicsEntity() = default;
+	virtual ~IRigidBody() = default;
 
 	virtual btRigidBody* GetRigidBody() const noexcept = 0;
 };

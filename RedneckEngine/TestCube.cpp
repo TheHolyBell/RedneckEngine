@@ -90,16 +90,19 @@ bool TestCube::IsMenuDrawable() const noexcept
 
 void TestCube::DrawMenu(Graphics& gfx) noexcept
 {
+	bool dirty = false;
 	if (ImGui::Begin(m_UID.c_str(), &m_bMenu))
 	{
+
 		ImGui::Text("Position");
-		ImGui::SliderFloat("X", &m_pos.x, -80.0f, 80.0f, "%.1f");
-		ImGui::SliderFloat("Y", &m_pos.y, -80.0f, 80.0f, "%.1f");
-		ImGui::SliderFloat("Z", &m_pos.z, -80.0f, 80.0f, "%.1f");
+		dirty = ImGui::SliderFloat("X", &m_pos.x, -80.0f, 80.0f, "%.1f") || dirty;
+		dirty = ImGui::SliderFloat("Y", &m_pos.y, -80.0f, 80.0f, "%.1f") || dirty;
+		dirty = ImGui::SliderFloat("Z", &m_pos.z, -80.0f, 80.0f, "%.1f") || dirty;
+
 		ImGui::Text("Orientation");
-		ImGui::SliderAngle("Pitch", &pitch, -180.0f, 180.0f);
-		ImGui::SliderAngle("Yaw", &yaw, -180.0f, 180.0f);
-		ImGui::SliderAngle("Roll", &roll, -180.0f, 180.0f);
+		dirty = ImGui::SliderAngle("Pitch", &pitch, -180.0f, 180.0f) || dirty;
+		dirty = ImGui::SliderAngle("Yaw", &yaw, -180.0f, 180.0f) || dirty;
+		dirty = ImGui::SliderAngle("Roll", &roll, -180.0f, 180.0f) || dirty;
 		ImGui::Text("Shading");
 		bool changed0 = ImGui::SliderFloat("Spec. Int.", &pmc.specularIntensity, 0.0f, 1.0f);
 		bool changed1 = ImGui::SliderFloat("Spec. Power", &pmc.specularPower, 0.0f, 100.0f);
@@ -112,4 +115,7 @@ void TestCube::DrawMenu(Graphics& gfx) noexcept
 		}
 	}
 	ImGui::End();
+
+	if (dirty)
+		SetPos(m_pos);
 }

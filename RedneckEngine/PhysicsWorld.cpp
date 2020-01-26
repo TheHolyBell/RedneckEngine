@@ -16,17 +16,34 @@ void PhysicsWorld::Initialize()
 	m_world->setGravity(btVector3(0, -10, 0));	//gravity on Earth
 }
 
-void PhysicsWorld::AddEntity(std::shared_ptr<IPhysicsEntity> entity)
+void PhysicsWorld::Shutdown()
+{
+	delete m_solver;
+	delete m_collisionConfig;
+	delete m_broadphase;
+	delete m_dispatcher;
+	delete m_world;
+}
+
+void PhysicsWorld::AddRigidBody(std::shared_ptr<IRigidBody> entity)
 {
 	m_world->addRigidBody(entity->GetRigidBody());
 }
 
-void PhysicsWorld::RemoveEntity(IPhysicsEntity* entity)
+void PhysicsWorld::RemoveRigidBody(IRigidBody* entity)
 {
 	m_world->removeRigidBody(entity->GetRigidBody());
 }
 
+void PhysicsWorld::AddCollidableBody(ICollidable* entity)
+{
+	m_world->addCollisionObject(entity->GetCollisionObject());
+}
+
 void PhysicsWorld::Update(float dt)
 {
+	auto& arr = m_world->getCollisionObjectArray();
+	for (int i = 0; i < arr.size(); ++i)
+		arr[i]->activate(true);
 	m_world->stepSimulation(dt);
 }

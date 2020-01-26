@@ -33,11 +33,12 @@ DirectX::XMMATRIX PhysicsPlane::GetTransformXM() const noexcept
 
 btRigidBody* PhysicsPlane::GetRigidBody() const noexcept
 {
+	btCollisionObject;
 	return m_RigidBody;
 }
 
 PhysicsPlane::~PhysicsPlane()
 {
 	Console::WriteLine("%s been called", __FUNCTION__);
-	PhysicsWorld::RemoveEntity(this);
+	PhysicsWorld::RemoveRigidBody(this);
 }

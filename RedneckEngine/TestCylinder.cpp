@@ -88,16 +88,21 @@ bool TestCylinder::IsMenuDrawable() const noexcept
 
 void TestCylinder::DrawMenu(Graphics& gfx) noexcept
 {
+	bool dirty = false;
 	if (ImGui::Begin(m_UID.c_str(), &m_bMenu))
 	{
+
 		ImGui::Text("Position");
-		ImGui::SliderFloat("X", &m_pos.x, -80.0f, 80.0f, "%.1f");
-		ImGui::SliderFloat("Y", &m_pos.y, -80.0f, 80.0f, "%.1f");
-		ImGui::SliderFloat("Z", &m_pos.z, -80.0f, 80.0f, "%.1f");
+		dirty = ImGui::SliderFloat("X", &m_pos.x, -80.0f, 80.0f, "%.1f") || dirty;
+		dirty = ImGui::SliderFloat("Y", &m_pos.y, -80.0f, 80.0f, "%.1f") || dirty;
+		dirty = ImGui::SliderFloat("Z", &m_pos.z, -80.0f, 80.0f, "%.1f") || dirty;
+
 		ImGui::Text("Orientation");
-		ImGui::SliderAngle("Pitch", &pitch, -180.0f, 180.0f);
-		ImGui::SliderAngle("Yaw", &yaw, -180.0f, 180.0f);
-		ImGui::SliderAngle("Roll", &roll, -180.0f, 180.0f);
+		dirty = ImGui::SliderAngle("Pitch", &pitch, -180.0f, 180.0f) || dirty;
+		dirty = ImGui::SliderAngle("Yaw", &yaw, -180.0f, 180.0f) || dirty;
+		dirty = ImGui::SliderAngle("Roll", &roll, -180.0f, 180.0f) || dirty;
 	}
 	ImGui::End();
+	if (dirty)
+		SetPos(m_pos);
 }

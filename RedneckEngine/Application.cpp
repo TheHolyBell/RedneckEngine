@@ -13,6 +13,8 @@
 #include "PhysicsSphere.h"
 #include "PhysicsWorld.h"
 #include "PhysicsPlane.h"
+#include "PhysicsBox.h"
+#include "PhysicsCylinder.h"
 
 enum class EntityType
 {
@@ -41,27 +43,37 @@ std::shared_ptr<Entity> EntityFactory(Graphics& gfx, EntityType type)
 	{
 	case EntityType::Box:
 	{
-		auto pBox = std::make_shared<TestCube>(gfx, boxdist(rng));
+		/*auto pBox = std::make_shared<TestCube>(gfx, boxdist(rng));
 		pBox->SetPos({ xdist(rng), ydist(rng), zdist(rng)});
+		return pBox;*/
+
+		auto pBox = std::make_shared<PhysicsBox>(gfx, boxdist(rng));
+		pBox->SetPos({ xdist(rng), ydist(rng), zdist(rng) });
+		PhysicsWorld::AddRigidBody(pBox);
 		return pBox;
 	}
 	case EntityType::Cylinder:
 	{
-		auto pCylinder = std::make_shared<TestCylinder>(gfx, 2, 0.01, 7);
+		/*auto pCylinder = std::make_shared<TestCylinder>(gfx, 2, 0.01, 7);
 		pCylinder->SetPos({ xdist(rng), ydist(rng), zdist(rng) });
+		return pCylinder;*/
+		
+		auto pCylinder = std::make_shared<PhysicsCylinder>(gfx, 2, 0.01, 7);
+		pCylinder->SetPos({ xdist(rng), ydist(rng), zdist(rng) });
+		PhysicsWorld::AddRigidBody(pCylinder);
 		return pCylinder;
 	}
 	case EntityType::Plane:
 	{
 		auto pPlane = std::make_shared<PhysicsPlane>(gfx, planedist(rng));
-		PhysicsWorld::AddEntity(pPlane);
+		PhysicsWorld::AddRigidBody(pPlane);
 		return pPlane;
 	}
 	case EntityType::Sphere:
 	{
 		auto pSphere = std::make_shared<PhysicsSphere>(gfx, 5, 1000);
 		pSphere->SetPos({ xdist(rng), ydist(rng), zdist(rng) });
-		PhysicsWorld::AddEntity(pSphere);
+		PhysicsWorld::AddRigidBody(pSphere);
 		return pSphere;
 	}
 	}
@@ -76,19 +88,21 @@ App::App(int width, int height, const char* title, const std::string& commandLin
 	
 	PhysicsWorld::Initialize();
 
+	PhysicsWorld::AddCollidableBody(&m_pGfx->m_camera);
+
 	InputSystem::RegisterHotkey(VK_ADD, [&]
 	{
-		static float r = 5.0f;
+		static float r = 5.001f;
 		auto pSphere = std::make_shared<PhysicsSphere>(*m_pGfx, r, 5);
 		auto& camera = m_pGfx->m_camera;
 		auto camPos = camera.GetPos();
 		pSphere->SetPos({camPos.x, camPos.y, camPos.z});
-		DirectX::XMFLOAT3 look;
-		DirectX::XMStoreFloat3(&look, camera.GetLookVector() * 20);
+		static DirectX::XMFLOAT3 look;
+		DirectX::XMStoreFloat3(&look, camera.GetLookVector() * 30);
 		pSphere->GetRigidBody()->setLinearVelocity(btVector3(look.x, look.y, look.z));
-		PhysicsWorld::AddEntity(pSphere);
+		PhysicsWorld::AddRigidBody(pSphere);
 		EntityManager::AddEntity(pSphere);
-		r += 0.01f;
+		r += 0.001f;
 	});
 
 	//EntityManager::AddEntity(std::make_shared<Model>(*m_pGfx, OpenFileDialog::ShowDialog(), 0.5f));

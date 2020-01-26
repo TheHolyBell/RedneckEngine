@@ -1,8 +1,8 @@
 #pragma once
-#include "PhysicsEntity.h"
+#include "IRigidBody.h"
 #include "TestPlane.h"
 
-class PhysicsPlane : public TestPlane, public IPhysicsEntity
+class PhysicsPlane : public TestPlane, public IRigidBody
 {
 public:
 	PhysicsPlane(Graphics& gfx, float size, DirectX::XMFLOAT4 color = { 1.0f, 1.0f, 1.0f,1.0f });

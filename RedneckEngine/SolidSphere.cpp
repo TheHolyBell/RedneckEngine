@@ -4,6 +4,7 @@
 #include "Sphere.h"
 #include "Vertex.h"
 #include "DepthStencil.h"
+#include "ImGui\imgui.h"
 
 SolidSphere::SolidSphere(Graphics& gfx, float radius)
 {
@@ -14,7 +15,7 @@ SolidSphere::SolidSphere(Graphics& gfx, float radius)
 	model.Transform(dx::XMMatrixScaling(radius, radius, radius));
 	const auto geometryTag = "$sphere." + std::to_string(radius);
 	
-	m_name = geometryTag;
+	m_UID = geometryTag;
 	
 	AddBind(VertexBuffer::Resolve(gfx, geometryTag, model.vertices));
 	AddBind(IndexBuffer::Resolve(gfx, geometryTag, model.indices));
@@ -25,12 +26,8 @@ SolidSphere::SolidSphere(Graphics& gfx, float radius)
 
 	AddBind(PixelShader::Resolve(gfx, "SolidPS.cso"));
 
-	struct PSColorConstant
-	{
-		dx::XMFLOAT3 color = { 1.0f, 1.0f, 1.0f };
-		float padding;
-	} colorConst;
-	AddBind(PixelConstantBuffer<PSColorConstant>::Resolve(gfx, colorConst, 1));
+	//AddBind(PixelConstantBuffer<PSColorConstant>::Resolve(gfx, pmc, 1));
+	AddBind(std::make_shared<PixelConstantBuffer<PSColorConstant>>(gfx, pmc, 1));
 
 	AddBind(InputLayout::Resolve(gfx, model.vertices.GetLayout(), pvsbc));
 
@@ -58,7 +55,7 @@ void SolidSphere::Draw(Graphics& gfx) const noexcept(!IS_DEBUG)
 
 std::string SolidSphere::GetUID() const noexcept
 {
-	return m_name;
+	return m_UID;
 }
 
 void SolidSphere::SetPos(DirectX::XMFLOAT3 pos) noexcept
@@ -73,9 +70,33 @@ bool SolidSphere::IsMenuDrawable() const noexcept
 
 void SolidSphere::DrawMenu(Graphics& gfx) noexcept
 {
+	if (ImGui::Begin(m_UID.c_str(), &m_bMenu))
+	{
+		bool b_X = false, b_Y = false, b_Z = false;
+
+		ImGui::Text("Position");
+		b_X = ImGui::SliderFloat("X", &m_pos.x, -80.0f, 80.0f, "%.1f");
+		b_Y = ImGui::SliderFloat("Y", &m_pos.y, -80.0f, 80.0f, "%.1f");
+		b_Z = ImGui::SliderFloat("Z", &m_pos.z, -80.0f, 80.0f, "%.1f");
+
+		ImGui::Text("Shading");
+
+		if (ImGui::ColorEdit4("Solid color", (float*)&pmc.color))
+		{
+			auto pConstant = QueryBindable<Bind::PixelConstantBuffer<PSColorConstant>>();
+			if (pConstant != nullptr)
+				pConstant->Update(gfx, pmc);
+		}
+
+		if (b_X || b_Y || b_Z)
+		{
+			SetPos(m_pos);
+		}
+	}
+	ImGui::End();
 }
 
 void SolidSphere::ItemSelected() noexcept
 {
-	m_bMenu = false;
+	m_bMenu = true;
 }

@@ -1,20 +1,20 @@
 #pragma once
-#include "SolidSphere.h"
+#include "TestCube.h"
 #include "IRigidBody.h"
 #include <memory>
 
-class PhysicsSphere : public SolidSphere, public IRigidBody
+
+class PhysicsBox : public TestCube, public IRigidBody
 {
 public:
-	PhysicsSphere(Graphics& gfx, float radius, float mass = 2);
+	PhysicsBox(Graphics& gfx, float size, float mass = 2.0f);
 
-	virtual void Update(float dt) override;
 	virtual DirectX::XMMATRIX GetTransformXM() const noexcept override;
 	virtual btRigidBody* GetRigidBody() const noexcept override;
 	virtual void SetPos(DirectX::XMFLOAT3 pos) noexcept override;
 
-	virtual ~PhysicsSphere();
+	virtual ~PhysicsBox();
 
 private:
-	std::unique_ptr<btRigidBody> m_RigidBody = nullptr;
+	std::unique_ptr<btRigidBody> m_RigidBody;
 };

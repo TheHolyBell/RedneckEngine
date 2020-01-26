@@ -5,7 +5,7 @@
 #include "WindowClass.h"
 #include "RedneckException.h"
 #include <DirectXMath.h>
-#include "Camera.h"
+#include "PhysicsCamera.h"
 #include "WindowEvents.h"
 
 namespace Bind
@@ -79,7 +79,6 @@ public:
 
 private:
 	void InitializeDirectX(Window* pWnd);
-
 	void ResizeBuffers(int width, int height);
 
 #ifndef NDEBUG
@@ -93,6 +92,6 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> m_pDepthBuffer;
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_pDepthStencilView;
 
-	Camera m_camera;
+	PhysicsCamera m_camera;
 	bool m_bImGuiEnabled = true;
 };

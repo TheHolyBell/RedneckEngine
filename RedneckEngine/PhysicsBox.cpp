@@ -1,30 +1,23 @@
-#include "PhysicsSphere.h"
-#include "ConsoleClass.h"
+#include "PhysicsBox.h"
 #include "PhysicsWorld.h"
 
-PhysicsSphere::PhysicsSphere(Graphics& gfx, float radius, float mass)
-	: SolidSphere(gfx, radius)
+PhysicsBox::PhysicsBox(Graphics& gfx, float size, float mass)
+	: TestCube(gfx, size)
 {
 	btTransform t;
 	t.setIdentity();
 	t.setOrigin(btVector3(m_pos.x, m_pos.y, m_pos.z));
-	btSphereShape* sphere = new btSphereShape(radius);
+	btBoxShape* box = new btBoxShape(btVector3(size / 2.0, size / 2.0, size / 2.0));
 	btVector3 inertia(0, 0, 0);
-	if (mass != 0)
-		sphere->calculateLocalInertia(mass, inertia);
+	if (mass != 0.0)
+		box->calculateLocalInertia(mass, inertia);
 
 	btMotionState* motion = new btDefaultMotionState(t);
-	btRigidBody::btRigidBodyConstructionInfo info(mass, motion, sphere, inertia);
+	btRigidBody::btRigidBodyConstructionInfo info(mass, motion, box, inertia);
 	m_RigidBody = std::make_unique<btRigidBody>(info);
 }
 
-void PhysicsSphere::Update(float dt)
-{
-	if (m_pos.y < -500)
-		PhysicsWorld::RemoveRigidBody(this);
-}
-
-DirectX::XMMATRIX PhysicsSphere::GetTransformXM() const noexcept
+DirectX::XMMATRIX PhysicsBox::GetTransformXM() const noexcept
 {
 	using namespace DirectX;
 	btTransform t;
@@ -32,7 +25,7 @@ DirectX::XMMATRIX PhysicsSphere::GetTransformXM() const noexcept
 	float mat[16];
 	t.getOpenGLMatrix(mat);
 	XMMATRIX _matrix(mat);
-	PhysicsSphere* _this = const_cast<PhysicsSphere*>(this);
+	PhysicsBox* _this = const_cast<PhysicsBox*>(this);
 	_this->m_pos.x = XMVectorGetX(_matrix.r[3]);
 	_this->m_pos.y = XMVectorGetY(_matrix.r[3]);
 	_this->m_pos.z = XMVectorGetZ(_matrix.r[3]);
@@ -40,23 +33,23 @@ DirectX::XMMATRIX PhysicsSphere::GetTransformXM() const noexcept
 	return _matrix;
 }
 
-btRigidBody* PhysicsSphere::GetRigidBody() const noexcept
+btRigidBody* PhysicsBox::GetRigidBody() const noexcept
 {
 	return m_RigidBody.get();
 }
 
-void PhysicsSphere::SetPos(DirectX::XMFLOAT3 pos) noexcept
+void PhysicsBox::SetPos(DirectX::XMFLOAT3 pos) noexcept
 {
-	SolidSphere::SetPos(pos);
+	TestCube::SetPos(pos);
 	btTransform t;
 	t.setIdentity();
 	t.setOrigin(btVector3(m_pos.x, m_pos.y, m_pos.z));
+	t.setRotation(btQuaternion(yaw, pitch, roll));
 	m_RigidBody->setMotionState(new btDefaultMotionState(t));
 	m_RigidBody->activate(true);
 }
 
-PhysicsSphere::~PhysicsSphere()
+PhysicsBox::~PhysicsBox()
 {
-	Console::WriteLine("%s been called", __FUNCTION__);
 	PhysicsWorld::RemoveRigidBody(this);
 }

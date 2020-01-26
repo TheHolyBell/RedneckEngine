@@ -115,6 +115,9 @@
     <Filter Include="PhysicsSystem\Test">
       <UniqueIdentifier>{6173ad29-2d7a-4124-8a42-0fc8fef26cdc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\FrameBuffers">
+      <UniqueIdentifier>{29b4cb2c-53ab-408a-9f52-78baae93764d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -711,6 +714,15 @@
     <ClCompile Include="PhysicsPlane.cpp">
       <Filter>PhysicsSystem\Test</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsBox.cpp">
+      <Filter>PhysicsSystem\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsCylinder.cpp">
+      <Filter>PhysicsSystem\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsCamera.cpp">
+      <Filter>PhysicsSystem\Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputSystem.h">
@@ -946,9 +958,6 @@
     </ClInclude>
     <ClInclude Include="Texture3D.h">
       <Filter>Header Files\Bindable</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsEntity.h">
-      <Filter>PhysicsSystem</Filter>
     </ClInclude>
     <ClInclude Include="BulletPhysics\BulletCollision\BroadphaseCollision\btAxisSweep3.h">
       <Filter>ThirdParty\BulletPhysics</Filter>
@@ -1606,6 +1615,21 @@
     </ClInclude>
     <ClInclude Include="PhysicsPlane.h">
       <Filter>PhysicsSystem\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsBox.h">
+      <Filter>PhysicsSystem\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsCylinder.h">
+      <Filter>PhysicsSystem\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsCamera.h">
+      <Filter>PhysicsSystem\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="ICollidable.h">
+      <Filter>PhysicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="IRigidBody.h">
+      <Filter>PhysicsSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
