@@ -16,6 +16,9 @@ PhysicsSphere::PhysicsSphere(Graphics& gfx, float radius, float mass)
 	btMotionState* motion = new btDefaultMotionState(t);
 	btRigidBody::btRigidBodyConstructionInfo info(mass, motion, sphere, inertia);
 	m_RigidBody = std::make_unique<btRigidBody>(info);
+
+	m_RigidBody->setCollisionFlags(m_RigidBody->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
+	m_RigidBody->setActivationState(DISABLE_DEACTIVATION);
 }
 
 void PhysicsSphere::Update(float dt)

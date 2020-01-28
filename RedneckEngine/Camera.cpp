@@ -10,7 +10,7 @@
 
 using namespace DirectX;
 
-float Camera::travelSpeed = 30.0f;
+float Camera::travelSpeed = 50.0f;
 
 
 Camera::Camera() noexcept

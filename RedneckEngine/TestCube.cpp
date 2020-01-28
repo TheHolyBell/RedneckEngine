@@ -37,8 +37,6 @@ TestCube::TestCube(Graphics& gfx, float size)
 
 	AddBind(InputLayout::Resolve(gfx, model.vertices.GetLayout(), pvsbc));
 
-	AddBind(Topology::Resolve(gfx, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST));
-
 	AddBind(std::make_shared<TransformCbufDoubleBoi>(gfx, *this, 0, 2));
 
 	AddBind(std::make_shared<Blender>(gfx, false, 0.5f));

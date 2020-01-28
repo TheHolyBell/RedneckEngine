@@ -1,10 +1,11 @@
 #pragma once
 #include "CommonD3D.h"
 #include "Graphics.h"
+#include "IUID.h"
 
 namespace Bind
 {
-	class IBindable
+	class IBindable : public IUID
 	{
 	public:
 		virtual ~IBindable() = default;

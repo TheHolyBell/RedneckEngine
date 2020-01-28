@@ -15,6 +15,7 @@
 #include "PhysicsPlane.h"
 #include "PhysicsBox.h"
 #include "PhysicsCylinder.h"
+#include "PyScriptManager.h"
 
 enum class EntityType
 {
@@ -88,7 +89,7 @@ App::App(int width, int height, const char* title, const std::string& commandLin
 	
 	PhysicsWorld::Initialize();
 
-	PhysicsWorld::AddCollidableBody(&m_pGfx->m_camera);
+	PhysicsWorld::AddRigidBody(&m_pGfx->m_camera);
 
 	InputSystem::RegisterHotkey(VK_ADD, [&]
 	{
@@ -113,10 +114,10 @@ App::App(int width, int height, const char* title, const std::string& commandLin
 	EntityManager::AddEntity(EntityFactory(*m_pGfx, EntityType::Box));
 	EntityManager::AddEntity(EntityFactory(*m_pGfx, EntityType::Box));
 	EntityManager::AddEntity(EntityFactory(*m_pGfx, EntityType::Box));
-	EntityManager::AddEntity(EntityFactory(*m_pGfx, EntityType::Plane));
 	EntityManager::AddEntity(EntityFactory(*m_pGfx, EntityType::Cylinder));
 	EntityManager::AddEntity(EntityFactory(*m_pGfx, EntityType::Cylinder));
 	EntityManager::AddEntity(EntityFactory(*m_pGfx, EntityType::Sphere));
+	EntityManager::AddEntity(EntityFactory(*m_pGfx, EntityType::Plane));
 	Menu::AddItem(std::make_shared<MusicClass>());
 	Menu::AddItem(m_cubemap);
 }
@@ -156,6 +157,6 @@ void App::DoFrame()
 	EntityManager::Update(dt);
 	EntityManager::Render(*m_pGfx);
 	Menu::Render(*m_pGfx);
-
+	
 	m_pGfx->EndFrame();
 }

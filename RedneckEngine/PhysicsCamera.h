@@ -1,15 +1,15 @@
 #pragma once
-#include "ICollidable.h"
+#include "IRigidBody.h"
 #include "Camera.h"
 #include <memory>
 
-class PhysicsCamera : public Camera, public ICollidable
+class PhysicsCamera : public Camera, public IRigidBody
 {
 public:
 	PhysicsCamera() noexcept;
 
 	virtual void Update(float dt) override;
-	virtual btCollisionObject* GetCollisionObject() noexcept override;
+	virtual btRigidBody* GetRigidBody() const noexcept override;
 private:
-	std::unique_ptr<btCollisionObject> m_CollisionObject;
+	std::unique_ptr<btRigidBody> m_RigidBody;
 };

@@ -74,8 +74,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)\BulletPhysics;D:\VisualStudio\RedneckEngine\RedneckEngine\assimp\include;D:\VisualStudio\RedneckEngine\RedneckEngine\DirectXTex\include\dxtex;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\VisualStudio\RedneckEngine\RedneckEngine\assimp\bin\x64;D:\VisualStudio\RedneckEngine\RedneckEngine\DirectXTex\bin\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\kamal\AppData\Local\Programs\Python\Python38\include;$(ProjectDir)\BulletPhysics;D:\VisualStudio\RedneckEngine\RedneckEngine\assimp\include;D:\VisualStudio\RedneckEngine\RedneckEngine\DirectXTex\include\dxtex;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\kamal\AppData\Local\Programs\Python\Python38\libs;D:\VisualStudio\RedneckEngine\RedneckEngine\assimp\bin\x64;D:\VisualStudio\RedneckEngine\RedneckEngine\DirectXTex\bin\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -137,7 +137,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;NOMINMAX;_CONSOLE;IS_DEBUG=true;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;NOMINMAX;_CONSOLE;IS_DEBUG=true;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -330,6 +330,8 @@
     <ClCompile Include="PhysicsSphere.cpp" />
     <ClCompile Include="PhysicsWorld.cpp" />
     <ClCompile Include="PixelShader.cpp" />
+    <ClCompile Include="PyScript.cpp" />
+    <ClCompile Include="PyScriptManager.cpp" />
     <ClCompile Include="Rasterizer.cpp" />
     <ClCompile Include="RedneckException.cpp" />
     <ClCompile Include="RedneckUtility.cpp" />
@@ -611,6 +613,7 @@
     <ClInclude Include="IndexedTriangleList.h" />
     <ClInclude Include="InputLayout.h" />
     <ClInclude Include="InputSystem.h" />
+    <ClInclude Include="ISoftBody.h" />
     <ClInclude Include="IUID.h" />
     <ClInclude Include="IUpdateable.h" />
     <ClInclude Include="json.hpp" />
@@ -631,6 +634,8 @@
     <ClInclude Include="PhysicsWorld.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="Plane.h" />
+    <ClInclude Include="PyScript.h" />
+    <ClInclude Include="PyScriptManager.h" />
     <ClInclude Include="Rasterizer.h" />
     <ClInclude Include="RedneckException.h" />
     <ClInclude Include="RedneckUtility.h" />

@@ -15,6 +15,7 @@ PhysicsBox::PhysicsBox(Graphics& gfx, float size, float mass)
 	btMotionState* motion = new btDefaultMotionState(t);
 	btRigidBody::btRigidBodyConstructionInfo info(mass, motion, box, inertia);
 	m_RigidBody = std::make_unique<btRigidBody>(info);
+	m_RigidBody->setActivationState(DISABLE_DEACTIVATION);
 }
 
 DirectX::XMMATRIX PhysicsBox::GetTransformXM() const noexcept
@@ -45,8 +46,7 @@ void PhysicsBox::SetPos(DirectX::XMFLOAT3 pos) noexcept
 	t.setIdentity();
 	t.setOrigin(btVector3(m_pos.x, m_pos.y, m_pos.z));
 	t.setRotation(btQuaternion(yaw, pitch, roll));
-	m_RigidBody->setMotionState(new btDefaultMotionState(t));
-	m_RigidBody->activate(true);
+	m_RigidBody->getWorldTransform() = t;
 }
 
 PhysicsBox::~PhysicsBox()

@@ -33,7 +33,6 @@ DirectX::XMMATRIX PhysicsPlane::GetTransformXM() const noexcept
 
 btRigidBody* PhysicsPlane::GetRigidBody() const noexcept
 {
-	btCollisionObject;
 	return m_RigidBody;
 }
 

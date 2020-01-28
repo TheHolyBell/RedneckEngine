@@ -7,7 +7,7 @@
 #include <filesystem>
 #include "RedneckUtility.h"
 
-#pragma comment(lib, "D:\\VisualStudio\\RedneckEngine\\RedneckEngine\\DirectXTex\\bin\\Debug\\DirectXTex.lib")
+#pragma comment(lib, "DirectXTex.lib")
 
 Surface::Surface(unsigned int width, unsigned int height)
 {

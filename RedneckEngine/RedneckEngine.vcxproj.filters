@@ -118,6 +118,12 @@
     <Filter Include="Header Files\FrameBuffers">
       <UniqueIdentifier>{29b4cb2c-53ab-408a-9f52-78baae93764d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PhysicsSystem\Interfaces">
+      <UniqueIdentifier>{fbc26f5d-85a7-4656-a75e-acec12f398e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripting">
+      <UniqueIdentifier>{aaa3ceb2-d711-4614-88f2-b7540935cc11}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -722,6 +728,12 @@
     </ClCompile>
     <ClCompile Include="PhysicsCamera.cpp">
       <Filter>PhysicsSystem\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="PyScript.cpp">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="PyScriptManager.cpp">
+      <Filter>Scripting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1626,10 +1638,19 @@
       <Filter>PhysicsSystem\Test</Filter>
     </ClInclude>
     <ClInclude Include="ICollidable.h">
-      <Filter>PhysicsSystem</Filter>
+      <Filter>PhysicsSystem\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="IRigidBody.h">
-      <Filter>PhysicsSystem</Filter>
+      <Filter>PhysicsSystem\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ISoftBody.h">
+      <Filter>PhysicsSystem\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="PyScript.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="PyScriptManager.h">
+      <Filter>Scripting</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

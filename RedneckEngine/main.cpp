@@ -7,6 +7,7 @@
 #include "OpenFileDialog.h"
 #include "ImGuiManager.h"
 #include "Application.h"
+#include "PyScriptManager.h"
 #include <fstream>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR CommandLine, int)
@@ -15,6 +16,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR CommandLine, int)
 	Console::Initialize();
 
 	ImGuiManager::Initialize();
+
+	PyScriptManager::Initialize();
+	PyScriptManager::AddScript("Collision", "crash.py");
 
 	try
 	{

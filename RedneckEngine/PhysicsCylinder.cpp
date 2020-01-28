@@ -31,6 +31,7 @@ PhysicsCylinder::PhysicsCylinder(Graphics& gfx, float bottomRadius, float topRad
 		btRigidBody::btRigidBodyConstructionInfo info(mass, motion, cone, inertia);
 		m_RigidBody = std::make_unique<btRigidBody>(info);
 	}
+	m_RigidBody->setActivationState(DISABLE_DEACTIVATION);
 }
 
 DirectX::XMMATRIX PhysicsCylinder::GetTransformXM() const noexcept
@@ -57,8 +58,7 @@ void PhysicsCylinder::SetPos(DirectX::XMFLOAT3 pos) noexcept
 	t.setIdentity();
 	t.setOrigin(btVector3(m_pos.x, m_pos.y, m_pos.z));
 	t.setRotation(btQuaternion(yaw, pitch, roll));
-	m_RigidBody->setMotionState(new btDefaultMotionState(t));
-	m_RigidBody->activate(true);
+	m_RigidBody->getWorldTransform() = t;
 }
 
 btRigidBody* PhysicsCylinder::GetRigidBody() const noexcept
