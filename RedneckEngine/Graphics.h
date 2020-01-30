@@ -92,6 +92,9 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> m_pDepthBuffer;
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_pDepthStencilView;
 
+	int m_width;
+	int m_height;
+
 	PhysicsCamera m_camera;
 	bool m_bImGuiEnabled = true;
 };

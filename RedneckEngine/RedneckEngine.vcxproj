@@ -74,16 +74,16 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\kamal\AppData\Local\Programs\Python\Python38\include;$(ProjectDir)\BulletPhysics;D:\VisualStudio\RedneckEngine\RedneckEngine\assimp\include;D:\VisualStudio\RedneckEngine\RedneckEngine\DirectXTex\include\dxtex;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\kamal\AppData\Local\Programs\Python\Python38\libs;D:\VisualStudio\RedneckEngine\RedneckEngine\assimp\bin\x64;D:\VisualStudio\RedneckEngine\RedneckEngine\DirectXTex\bin\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\libvlc\include;C:\Users\kamal\AppData\Local\Programs\Python\Python38\include;$(ProjectDir)\BulletPhysics;D:\VisualStudio\RedneckEngine\RedneckEngine\assimp\include;D:\VisualStudio\RedneckEngine\RedneckEngine\DirectXTex\include\dxtex;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\libvlc\lib\msvc;C:\Users\kamal\AppData\Local\Programs\Python\Python38\libs;D:\VisualStudio\RedneckEngine\RedneckEngine\assimp\bin\x64;D:\VisualStudio\RedneckEngine\RedneckEngine\DirectXTex\bin\Debug;$(LibraryPath);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)\BulletPhysics;D:\VisualStudio\RedneckEngine\RedneckEngine\assimp\include;D:\VisualStudio\RedneckEngine\RedneckEngine\DirectXTex\include\dxtex;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\VisualStudio\RedneckEngine\RedneckEngine\assimp\bin\x64;D:\VisualStudio\RedneckEngine\RedneckEngine\DirectXTex\bin\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\libvlc\include;C:\Users\kamal\AppData\Local\Programs\Python\Python38\include;$(ProjectDir)\BulletPhysics;D:\VisualStudio\RedneckEngine\RedneckEngine\assimp\include;D:\VisualStudio\RedneckEngine\RedneckEngine\DirectXTex\include\dxtex;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\libvlc\lib\msvc;C:\Users\kamal\AppData\Local\Programs\Python\Python38\libs;D:\VisualStudio\RedneckEngine\RedneckEngine\assimp\bin\x64;D:\VisualStudio\RedneckEngine\RedneckEngine\DirectXTex\bin\Release;$(LibraryPath);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -320,9 +320,12 @@
     <ClCompile Include="InputLayout.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MatrixManager.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="OpenFileDialog.cpp" />
+    <ClCompile Include="PBRPlane.cpp" />
+    <ClCompile Include="PBRSphere.cpp" />
     <ClCompile Include="PhysicsBox.cpp" />
     <ClCompile Include="PhysicsCamera.cpp" />
     <ClCompile Include="PhysicsCylinder.cpp" />
@@ -330,15 +333,18 @@
     <ClCompile Include="PhysicsSphere.cpp" />
     <ClCompile Include="PhysicsWorld.cpp" />
     <ClCompile Include="PixelShader.cpp" />
+    <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="PyScript.cpp" />
     <ClCompile Include="PyScriptManager.cpp" />
+    <ClCompile Include="Radio.cpp" />
     <ClCompile Include="Rasterizer.cpp" />
     <ClCompile Include="RedneckException.cpp" />
+    <ClCompile Include="RedneckScene.cpp" />
     <ClCompile Include="RedneckUtility.cpp" />
     <ClCompile Include="RedneckXM.cpp" />
     <ClCompile Include="Sampler.cpp" />
+    <ClCompile Include="ShadowMap.cpp" />
     <ClCompile Include="SolidSphere.cpp" />
-    <ClCompile Include="Surface.cpp" />
     <ClCompile Include="TestCube.cpp" />
     <ClCompile Include="TestCylinder.cpp" />
     <ClCompile Include="TestPlane.cpp" />
@@ -356,6 +362,8 @@
     <ClCompile Include="WindowErrorClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdvancedPlane.h" />
+    <ClInclude Include="AdvancedSphere.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="BindableCodex.h" />
@@ -620,11 +628,15 @@
     <ClInclude Include="KeyboardEvents.h" />
     <ClInclude Include="LogCommon.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="MatrixManager.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MouseEvents.h" />
     <ClInclude Include="OpenFileDialog.h" />
     <ClInclude Include="ExceptionMacro.h" />
+    <ClInclude Include="PBRCommon.h" />
+    <ClInclude Include="PBRPlane.h" />
+    <ClInclude Include="PBRSphere.h" />
     <ClInclude Include="PhysicsBox.h" />
     <ClInclude Include="PhysicsCamera.h" />
     <ClInclude Include="PhysicsCylinder.h" />
@@ -634,17 +646,20 @@
     <ClInclude Include="PhysicsWorld.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="Plane.h" />
+    <ClInclude Include="PointLight.h" />
     <ClInclude Include="PyScript.h" />
     <ClInclude Include="PyScriptManager.h" />
+    <ClInclude Include="Radio.h" />
     <ClInclude Include="Rasterizer.h" />
     <ClInclude Include="RedneckException.h" />
+    <ClInclude Include="RedneckScene.h" />
     <ClInclude Include="RedneckUtility.h" />
     <ClInclude Include="RedneckXM.h" />
     <ClInclude Include="Sampler.h" />
+    <ClInclude Include="ShadowMap.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SolidSphere.h" />
     <ClInclude Include="Sphere.h" />
-    <ClInclude Include="Surface.h" />
     <ClInclude Include="TestCube.h" />
     <ClInclude Include="TestCylinder.h" />
     <ClInclude Include="TestPlane.h" />
@@ -663,9 +678,12 @@
     <ClInclude Include="WindowEvents.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CameraPos.hlsli" />
     <None Include="DXGetErrorDescription.inl" />
     <None Include="DXGetErrorString.inl" />
     <None Include="DXTrace.inl" />
+    <None Include="IBLHeader.hlsli" />
+    <None Include="LightVectorData.hlsli" />
     <None Include="PointLight.hlsli" />
     <None Include="ShaderOps.hlsli" />
     <None Include="Transform.hlsli" />
@@ -682,6 +700,26 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)%(Filename).cso</ObjectFileOutput>
     </FxCompile>
     <FxCompile Include="CubeMapVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="PBR_PS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="PBR_VS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

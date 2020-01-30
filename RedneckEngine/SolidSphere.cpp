@@ -100,3 +100,8 @@ void SolidSphere::ItemSelected() noexcept
 {
 	m_bMenu = true;
 }
+
+DirectX::XMFLOAT3 SolidSphere::GetPos() const noexcept
+{
+	return m_pos;
+}

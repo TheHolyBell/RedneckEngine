@@ -8,6 +8,9 @@
 #include "Mesh.h"
 #include "SolidSphere.h"
 #include "Cubemap.h"
+#include "PointLight.h"
+#include "RedneckScene.h"
+#include "ShadowMap.h"
 
 #include <memory>
 #include <set>
@@ -32,4 +35,7 @@ private:
 	std::string m_commandLine;
 	std::shared_ptr<Cubemap> m_cubemap;
 	float m_clearColor[4] = { 0.07f, 0.0f, 0.05f, 1.0f };
+	std::shared_ptr<PointLight> m_light;
+	RedneckScene m_BasicScene;
+	RedneckScene m_PBRScene;
 };

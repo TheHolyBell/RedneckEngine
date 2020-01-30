@@ -124,6 +124,9 @@
     <Filter Include="Scripting">
       <UniqueIdentifier>{aaa3ceb2-d711-4614-88f2-b7540935cc11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Drawable\PBR">
+      <UniqueIdentifier>{584f2671-7495-4203-abd2-4a996b666473}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -191,9 +194,6 @@
     </ClCompile>
     <ClCompile Include="IBindable.cpp">
       <Filter>Interfaces</Filter>
-    </ClCompile>
-    <ClCompile Include="Surface.cpp">
-      <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="RedneckUtility.cpp">
       <Filter>Header Files\Utility</Filter>
@@ -735,6 +735,27 @@
     <ClCompile Include="PyScriptManager.cpp">
       <Filter>Scripting</Filter>
     </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PBRSphere.cpp">
+      <Filter>Header Files\Drawable\PBR</Filter>
+    </ClCompile>
+    <ClCompile Include="RedneckScene.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PBRPlane.cpp">
+      <Filter>Header Files\Drawable\PBR</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixManager.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShadowMap.cpp">
+      <Filter>Header Files\FrameBuffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Radio.cpp">
+      <Filter>SoundSystem\Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputSystem.h">
@@ -877,9 +898,6 @@
     </ClInclude>
     <ClInclude Include="VertexShader.h">
       <Filter>Header Files\Bindable</Filter>
-    </ClInclude>
-    <ClInclude Include="Surface.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Math.h">
       <Filter>Header Files\Utility</Filter>
@@ -1652,6 +1670,36 @@
     <ClInclude Include="PyScriptManager.h">
       <Filter>Scripting</Filter>
     </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PBRSphere.h">
+      <Filter>Header Files\Drawable\PBR</Filter>
+    </ClInclude>
+    <ClInclude Include="AdvancedSphere.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="RedneckScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AdvancedPlane.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="PBRCommon.h">
+      <Filter>Header Files\Drawable\PBR</Filter>
+    </ClInclude>
+    <ClInclude Include="PBRPlane.h">
+      <Filter>Header Files\Drawable\PBR</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowMap.h">
+      <Filter>Header Files\FrameBuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Radio.h">
+      <Filter>SoundSystem\Audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXGetErrorDescription.inl">
@@ -1670,6 +1718,15 @@
       <Filter>Shaders\Headers</Filter>
     </None>
     <None Include="PointLight.hlsli">
+      <Filter>Shaders\Headers</Filter>
+    </None>
+    <None Include="CameraPos.hlsli">
+      <Filter>Shaders\Headers</Filter>
+    </None>
+    <None Include="LightVectorData.hlsli">
+      <Filter>Shaders\Headers</Filter>
+    </None>
+    <None Include="IBLHeader.hlsli">
       <Filter>Shaders\Headers</Filter>
     </None>
   </ItemGroup>
@@ -1712,6 +1769,12 @@
     </FxCompile>
     <FxCompile Include="CubeMapPS.hlsl">
       <Filter>Shaders\PS</Filter>
+    </FxCompile>
+    <FxCompile Include="PBR_VS.hlsl">
+      <Filter>Shaders\Templar</Filter>
+    </FxCompile>
+    <FxCompile Include="PBR_PS.hlsl">
+      <Filter>Shaders\Templar</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

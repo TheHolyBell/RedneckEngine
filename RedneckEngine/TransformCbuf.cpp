@@ -1,4 +1,5 @@
 #include "TransformCbuf.h"
+#include "MatrixManager.h"
 
 namespace Bind
 {
@@ -29,8 +30,8 @@ namespace Bind
 			DirectX::XMMatrixTranspose(model),
 			DirectX::XMMatrixTranspose(
 				model *
-				gfx.GetView() *
-				gfx.GetProjection()
+				MatrixManager::GetView() *
+				MatrixManager::GetProjection()
 			)
 		};
 	}

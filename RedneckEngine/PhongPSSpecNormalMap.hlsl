@@ -1,4 +1,5 @@
 #include "PointLight.hlsli"
+#include "ShaderOps.hlsli"
 
 cbuffer ObjectCBuf
 {
@@ -17,7 +18,11 @@ Texture2D nmap;
 SamplerState splr;
 
 
-float4 main(float3 viewFragPos : Position, float3 viewNormal : Normal, float3 viewTan : Tangent, float3 viewBitan : Bitangent, float2 tc : Texcoord) : SV_Target
+float4 main(float3 pos : Position, float3 n : Normal, float3 tan : Tangent, float3 bitan : Bitangent, float2 texCoord : Texcoord) : SV_Target
 {
-    return tex.Sample(splr, tc);
+    n = normalize(n);
+
+
+
+    return tex.Sample(splr, texCoord);
 }

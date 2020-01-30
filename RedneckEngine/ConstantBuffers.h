@@ -13,13 +13,14 @@ namespace Bind
 		{
 			INFOMAN(gfx);
 
-			D3D11_MAPPED_SUBRESOURCE mappedData = {};
-			
-			GFX_THROW_INFO(GetContext(gfx)->Map(m_pConstantBuffer.Get(), 0,
-				D3D11_MAP_WRITE_DISCARD, 0, &mappedData));
-
-			memcpy(mappedData.pData, &consts, sizeof(consts));
-			GetContext(gfx)->Unmap(m_pConstantBuffer.Get(), 0);
+			D3D11_MAPPED_SUBRESOURCE msr;
+			GFX_THROW_INFO(GetContext(gfx)->Map(
+				pConstantBuffer.Get(), 0u,
+				D3D11_MAP_WRITE_DISCARD, 0u,
+				&msr
+			));
+			memcpy(msr.pData, &consts, sizeof(consts));
+			GetContext(gfx)->Unmap(pConstantBuffer.Get(), 0u);
 		}
 		ConstantBuffer(Graphics& gfx, const C& consts, UINT slot = 0u)
 			:
@@ -37,7 +38,7 @@ namespace Bind
 
 			D3D11_SUBRESOURCE_DATA csd = {};
 			csd.pSysMem = &consts;
-			GFX_THROW_INFO(GetDevice(gfx)->CreateBuffer(&cbd, &csd, &m_pConstantBuffer));
+			GFX_THROW_INFO(GetDevice(gfx)->CreateBuffer(&cbd, &csd, &pConstantBuffer));
 		}
 		ConstantBuffer(Graphics& gfx, UINT slot = 0u)
 			:
@@ -52,26 +53,24 @@ namespace Bind
 			cbd.MiscFlags = 0u;
 			cbd.ByteWidth = sizeof(C);
 			cbd.StructureByteStride = 0u;
-			GFX_THROW_INFO(GetDevice(gfx)->CreateBuffer(&cbd, nullptr, &m_pConstantBuffer));
+			GFX_THROW_INFO(GetDevice(gfx)->CreateBuffer(&cbd, nullptr, &pConstantBuffer));
 		}
-
 	protected:
-		Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBuffer;
+		Microsoft::WRL::ComPtr<ID3D11Buffer> pConstantBuffer;
 		UINT slot;
 	};
 
 	template<typename C>
 	class VertexConstantBuffer : public ConstantBuffer<C>
 	{
-		using ConstantBuffer<C>::m_pConstantBuffer;
+		using ConstantBuffer<C>::pConstantBuffer;
 		using ConstantBuffer<C>::slot;
 		using IBindable::GetContext;
 	public:
 		using ConstantBuffer<C>::ConstantBuffer;
-
-		virtual void Bind(Graphics& gfx) noexcept override
+		void Bind(Graphics& gfx) noexcept override
 		{
-			GetContext(gfx)->VSSetConstantBuffers(slot, 1u, m_pConstantBuffer.GetAddressOf());
+			GetContext(gfx)->VSSetConstantBuffers(slot, 1u, pConstantBuffer.GetAddressOf());
 		}
 		static std::shared_ptr<VertexConstantBuffer> Resolve(Graphics& gfx, const C& consts, UINT slot = 0)
 		{
@@ -99,14 +98,14 @@ namespace Bind
 	template<typename C>
 	class PixelConstantBuffer : public ConstantBuffer<C>
 	{
-		using ConstantBuffer<C>::m_pConstantBuffer;
+		using ConstantBuffer<C>::pConstantBuffer;
 		using ConstantBuffer<C>::slot;
 		using IBindable::GetContext;
 	public:
 		using ConstantBuffer<C>::ConstantBuffer;
 		void Bind(Graphics& gfx) noexcept override
 		{
-			GetContext(gfx)->PSSetConstantBuffers(slot, 1u, m_pConstantBuffer.GetAddressOf());
+			GetContext(gfx)->PSSetConstantBuffers(slot, 1u, pConstantBuffer.GetAddressOf());
 		}
 		static std::shared_ptr<PixelConstantBuffer> Resolve(Graphics& gfx, const C& consts, UINT slot = 0)
 		{

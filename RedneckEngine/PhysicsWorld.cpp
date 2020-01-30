@@ -2,12 +2,12 @@
 #include "PyScriptManager.h"
 #include <thread>
 
-btSoftRigidDynamicsWorld* PhysicsWorld::m_world = nullptr;
-btDispatcher* PhysicsWorld::m_dispatcher = nullptr;
-btCollisionConfiguration* PhysicsWorld::m_collisionConfig = nullptr;
-btBroadphaseInterface* PhysicsWorld::m_broadphase = nullptr;
-btConstraintSolver* PhysicsWorld::m_solver = nullptr;
-btSoftBodySolver* PhysicsWorld::m_softBodySolver = nullptr;
+btSoftRigidDynamicsWorld* PhysicsWorld::m_world;
+btBroadphaseInterface* PhysicsWorld::m_broadphase;
+btDispatcher* PhysicsWorld::m_dispatcher;
+btCollisionConfiguration* PhysicsWorld::m_collisionConfig;
+btConstraintSolver* PhysicsWorld::m_solver;
+btSoftBodySolver* PhysicsWorld::m_softBodySolver;
 
 static bool _s_callback(btManifoldPoint& cp, const btCollisionObjectWrapper* colObj0Wrap, int partId0, int index0, const btCollisionObjectWrapper* colObj1Wrap, int partId1, int index1)
 {

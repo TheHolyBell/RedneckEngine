@@ -174,16 +174,22 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				ShowCursor();
 			}
 		}
+		if(LOWORD(wParam) == WA_INACTIVE)
+			m_bIsActive = false;
+		else
+			m_bIsActive = true;
 		break;
 
 	case WM_KILLFOCUS:
-		//kbd.ClearState();
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
 	default:
-		InputSystem::WndProc(hWnd, uMsg, wParam, lParam);
+		if (m_bIsActive)
+		{
+			InputSystem::WndProc(hWnd, uMsg, wParam, lParam);
+		}
 		break;
 
 	/*case WM_KEYDOWN:

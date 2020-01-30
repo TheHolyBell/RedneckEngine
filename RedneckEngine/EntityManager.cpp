@@ -3,8 +3,6 @@
 #include "Menu.h"
 #include <typeinfo>
 
-std::unordered_map<std::string, std::shared_ptr<Entity>> EntityManager::m_entities;
-
 void EntityManager::AddEntity(std::shared_ptr<Entity> entity)
 {
 	std::string _name = entity->GetUID();
@@ -13,8 +11,6 @@ void EntityManager::AddEntity(std::shared_ptr<Entity> entity)
 	if (it == m_entities.end())
 	{
 		m_entities[_name] = entity;
-		Menu::AddItem(entity);
-
 		Console::WriteLine("%s successfully loaded", _name.c_str());
 	}
 	else

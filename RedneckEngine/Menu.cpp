@@ -5,8 +5,7 @@
 #include "ConsoleClass.h"
 #include "Mesh.h"
 #include "OpenFileDialog.h"
-
-std::unordered_map<std::string, std::shared_ptr<IMenuViewable>> Menu::m_items;
+#include "RedneckScene.h"
 
 std::string GetPath()
 {
@@ -41,7 +40,7 @@ std::string GetPath()
 		return "Models\\nanosuit.obj";
 }
 
-void Menu::Render(Graphics& gfx)
+void Menu::Render(Graphics& gfx, RedneckScene& scene)
 {
 	if (ImGui::Begin("Entity list"))
 	{
@@ -68,11 +67,11 @@ void Menu::Render(Graphics& gfx)
 		if (ImGui::Button("Remove object"))
 		{
 			RemoveItem(chosen);
+			scene.RemoveEntity(chosen);
 		}
 		if (ImGui::Button("Clear World"))
 		{
-			Clear();
-			EntityManager::Clear();
+			scene.Clear();
 		}
 	}
 	
@@ -80,7 +79,7 @@ void Menu::Render(Graphics& gfx)
 	{
 		//
 		auto path = GetPath();
-		EntityManager::AddEntity(std::make_shared<Model>(gfx, path));
+		scene.AddEntity(std::make_shared<Model>(gfx, path));
 	}
 
 	ImGui::End();
@@ -115,7 +114,6 @@ void Menu::RemoveItem(const std::string& name)
 		Console::WriteLine("%s doesn't exists", name.c_str());
 		Console::SetConsoleColor(ConsoleColor::White);
 	}
-	EntityManager::RemoveEntity(name);
 }
 
 void Menu::Clear()

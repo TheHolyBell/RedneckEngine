@@ -7,6 +7,8 @@
 #include "KeyboardEvents.h"
 #include "InputSystem.h"
 #include "ConsoleClass.h"
+#include "Graphics.h"
+#include "ConstantBuffers.h"
 
 using namespace DirectX;
 
@@ -17,6 +19,11 @@ Camera::Camera() noexcept
 {
 	Reset();
 	EventDispatcher::AddGlobalEventListener<MouseMovedEvent>(*this);
+}
+
+void Camera::Initialize(Graphics& gfx)
+{
+	m_cbuf = std::make_shared<Bind::PixelConstantBuffer<PSConstantBuffer>>(gfx, pmc, 8);
 }
 
 DirectX::XMMATRIX Camera::GetProjection() const noexcept
@@ -131,6 +138,13 @@ DirectX::XMVECTOR Camera::GetLookVector() const noexcept
 	lookVector = XMVector3Transform(lookVector, XMMatrixRotationRollPitchYaw(pitch, yaw, 0.0f));
 
 	return XMVector3Normalize(lookVector);
+}
+
+void Camera::Bind(Graphics& gfx)
+{
+	pmc.cameraPos = GetPos();
+	m_cbuf->Update(gfx, pmc);
+	m_cbuf->Bind(gfx);
 }
 
 void Camera::OnEvent(const MouseMovedEvent& event)

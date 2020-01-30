@@ -6,15 +6,14 @@
 
 class EntityManager
 {
-	friend class Menu;
 public:
-	static void AddEntity(std::shared_ptr<Entity> entity);
-	static void RemoveEntity(const std::string& name);
-	static std::shared_ptr<Entity> GetEntity(const std::string& name);
+	void AddEntity(std::shared_ptr<Entity> entity);
+	void RemoveEntity(const std::string& name);
+	std::shared_ptr<Entity> GetEntity(const std::string& name);
 
-	static void Update(float dt);
-	static void Render(Graphics& gfx);
-	static void Clear();
+	void Update(float dt);
+	void Render(Graphics& gfx);
+	void Clear();
 private:
-	static std::unordered_map<std::string, std::shared_ptr<Entity>> m_entities;
+	std::unordered_map<std::string, std::shared_ptr<Entity>> m_entities;
 };

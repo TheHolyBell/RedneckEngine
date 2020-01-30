@@ -22,6 +22,9 @@ Graphics::Graphics(Window* pWnd)
 {
 	InitializeDirectX(pWnd);
 
+	m_width = pWnd->GetWidth();
+	m_height = pWnd->GetHeight();
+
 	m_camera.GenerateProjection(pWnd->GetWidth(), pWnd->GetHeight(), DirectX::XM_PIDIV2);
 
 	m_camera.Translate(DirectX::XMFLOAT3{ 0.0f, 0.0f, -0.5f });

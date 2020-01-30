@@ -60,6 +60,7 @@ private:
 
 private:
 	bool m_cursorEnabled = true;
+	bool m_bIsActive = true;
 	int m_width = 0;
 	int m_height = 0;
 	HWND m_hWnd = nullptr;

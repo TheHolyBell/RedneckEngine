@@ -28,8 +28,8 @@ private:
 	{
 		float specularIntensity = 0.1f;
 		float specularPower = 20.0f;
-		alignas(4) bool normalMappingEnabled = true;
-		float padding;
+		BOOL normalMappingEnabled = TRUE;
+		float padding[1];
 	} pmc;
 
 	std::string m_UID = "";

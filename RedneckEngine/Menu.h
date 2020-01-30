@@ -5,13 +5,15 @@
 #include <unordered_map>
 #include <string>
 
+class RedneckScene;
+
 class Menu
 {
 public:
-	static void Render(Graphics& gfx);
-	static void AddItem(std::shared_ptr<IMenuViewable> item);
-	static void RemoveItem(const std::string& name);
-	static void Clear();
+	void Render(Graphics& gfx, RedneckScene& scene);
+	void AddItem(std::shared_ptr<IMenuViewable> item);
+	void RemoveItem(const std::string& name);
+	void Clear();
 private:
-	static std::unordered_map<std::string, std::shared_ptr<IMenuViewable>> m_items;
+	std::unordered_map<std::string, std::shared_ptr<IMenuViewable>> m_items;
 };

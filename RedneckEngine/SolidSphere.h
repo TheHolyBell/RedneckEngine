@@ -16,15 +16,16 @@ public:
 
 	virtual void SetPos(DirectX::XMFLOAT3 pos) noexcept;
 
-
 	virtual bool IsMenuDrawable() const noexcept;
 	virtual void DrawMenu(Graphics& gfx) noexcept;
 	virtual void ItemSelected() noexcept;
 
+	DirectX::XMFLOAT3 GetPos() const noexcept;
+
 protected:
 	struct PSColorConstant
 	{
-		DirectX::XMFLOAT4 color = {1.0f, 0.0f, 0.0f, 1.0f};
+		DirectX::XMFLOAT4 color = {1.0f, 1.0f, 1.0f, 1.0f};
 	}pmc;
 	DirectX::XMFLOAT3 m_pos = { 1.0f, 1.0f, 1.0f };
 	std::string m_UID;

@@ -31,13 +31,11 @@ TestCube::TestCube(Graphics& gfx, float size)
 	auto pvsbc = pvs->GetBytecode();
 	AddBind(std::move(pvs));
 
-	AddBind(PixelShader::Resolve(gfx, "PhongPSNormalMap.cso"));
+	AddBind(PixelShader::Resolve(gfx, "PhongPS.cso"));
 
-	AddBind(PixelConstantBuffer<PSMaterialConstant>::Resolve(gfx, pmc, 1.0f));
+	AddBind(PixelConstantBuffer<PSMaterialConstant>::Resolve(gfx, pmc, 1));
 
 	AddBind(InputLayout::Resolve(gfx, model.vertices.GetLayout(), pvsbc));
-
-	AddBind(std::make_shared<TransformCbufDoubleBoi>(gfx, *this, 0, 2));
 
 	AddBind(std::make_shared<Blender>(gfx, false, 0.5f));
 
@@ -46,6 +44,8 @@ TestCube::TestCube(Graphics& gfx, float size)
 	AddBind(Topology::Resolve(gfx, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST));
 
 	AddBind(DepthStencil::Resolve(gfx));
+
+	AddBind(std::make_shared<TransformCbufDoubleBoi>(gfx, *this, 0, 2));
 }
 
 void TestCube::SetPos(DirectX::XMFLOAT3 pos) noexcept
